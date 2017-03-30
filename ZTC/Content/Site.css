@@ -1,0 +1,693 @@
+﻿/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.alert-float-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 30%;
+    z-index: 9999;
+    width: 40%;
+}
+
+/* index*/
+
+body {
+    font: "Trebuchet MS", Verdana, sans-serif;
+    background-color: #f3f5f6;
+    color: #696969;
+}
+
+
+#main {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 0 4px 4px 4px;
+}
+
+a {
+    color: #034af3;
+}
+/* Menu Styles ------------------------------*/
+ul#menu {
+    padding: 0px;
+    position: relative;
+    margin: 0;
+}
+
+    ul#menu li {
+        display: inline;
+    }
+
+        ul#menu li a {
+            background-color: #e8eef4;
+            padding: 10px 20px;
+            text-decoration: none;
+            line-height: 2.8em;
+            /*CSS3 properties*/
+            border-radius: 4px 4px 0 0;
+        }
+
+            ul#menu li a:hover {
+                background-color: #ffffff;
+            }
+/* Forms Styles ------------------------------*/
+fieldset {
+    padding-left: 12px;
+}
+
+    fieldset label {
+        display: block;
+        padding: 4px;
+    }
+
+#dados1 .txtRazaoSocial {
+    width: 400px !important;
+}
+
+#dados2 .txtNomeConsultor {
+    width: 556px !important;
+}
+
+#dados3 .txtNomeIdentificacao {
+    width: 400px !important;
+}
+
+#dados4 .txtRua {
+    width: 350px !important;
+}
+
+#dados4 .txtNumero {
+    width: 60px !important;
+}
+
+#dados4 .txtComplemento {
+    width: 250px !important;
+}
+
+#dados5 .txtRespReceConta {
+    width: 670px !important;
+}
+
+#dados6 .txtRua {
+    width: 607px !important;
+}
+
+#dados6 .txtNumero {
+    width: 60px !important;
+}
+
+#dados7 .txtRespReceConta {
+    width: 670px !important;
+}
+
+#dados8 .txtEmpresa {
+    width: 670px !important;
+}
+
+#dados9 .txtDataFaturamento {
+    width: 130px !important;
+}
+
+#dados10 .txtMoeda {
+    width: 130px !important;
+}
+
+#dados11 .txtcodbanco {
+    width: 180px !important;
+}
+
+#dados11 .txtcontratobanco {
+    width: 270px !important;
+}
+
+#dados11 .txtagencia {
+    width: 70px !important;
+}
+
+#dados11 .txtcontacorrente {
+    width: 110px !important;
+}
+
+#dados12 .txtcodbanco {
+    width: 180px !important;
+}
+
+#dados12 .txtcontratobanco {
+    width: 270px !important;
+}
+
+#dados12 .txtagencia {
+    width: 70px !important;
+}
+
+#dados12 .txtcontacorrente {
+    width: 110px !important;
+}
+
+#dados13 .txtcodbanco {
+    width: 180px !important;
+}
+
+#dados13 .txtcontratobanco {
+    width: 270px !important;
+}
+
+#dados13 .txtagencia {
+    width: 70px !important;
+}
+
+#dados13 .txtcontacorrente {
+    width: 110px !important;
+}
+
+#dados14 .txtEmpresa2 {
+    width: 270px !important;
+}
+
+#dados14 .txtpessoacontato {
+    width: 210px !important;
+}
+
+#dados15 .txtEmpresa3 {
+    width: 270px !important;
+}
+
+#dados15 .txtpessoacontato2 {
+    width: 210px !important;
+}
+
+#dados16 .txtEmpresa4 {
+    width: 270px !important;
+}
+
+#dados16 .txtpessoacontato3 {
+    width: 210px !important;
+}
+
+#dados17 .txtobservacoes {
+    width: 800px !important;
+    height: 200px !important;
+}
+
+#dados18 .txtlocalassinatura {
+    width: 500px !important;
+}
+
+input[type="submit"] {
+    padding: 4px;
+}
+/* Data Styles ------------------------------*/
+table.data {
+    background-color: #ffffff;
+    border: 1px solid #c3c3c3;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    table.data th {
+        background-color: #e8eef4;
+        border: 1px solid #c3c3c3;
+        padding: 3px;
+    }
+
+    table.data td {
+        border: 1px solid #c3c3c3;
+        padding: 3px;
+    }
+
+
+/*fim index*/
+
+
+
+table.teste {
+    font-family: Verdana, Arial, Sans-Serif;
+    font-size: 11px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #999999;
+    border-collapse: collapse;
+}
+
+.spaceRadio {
+    margin-left: 200px;
+}
+
+.btn-glyphicon {
+    padding: 8px;
+    background: #ffffff;
+    margin-right: 4px;
+}
+
+.icon-btn {
+    padding: 1px 15px 3px 2px;
+    border-radius: 50px;
+}
+
+/*CSS INPUT, SELECT*/
+
+input.input-pdr {
+    border: 1px solid #CCC;
+    border-radius: 0px;
+    height: 26px;
+    padding-left: 3px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+}
+
+input.input-pdr:disabled {
+    background: #F0F0F0;
+}
+
+select.select-pdr {
+    border: 1px solid #CCC;
+    border-radius: 0px;
+    height: 26px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+}
+
+select.select-pdr:disabled {
+    background: #F0F0F0;
+}
+
+textarea.pdr {
+    border: 1px solid #CCC;
+    border-radius: 0px;
+    padding-left: 3px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1) inset;
+}
+
+
+/*-------FIM-------*/
+
+#mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9000;
+    background-color: #000;
+    display: none;
+}
+
+
+
+#boxes .window {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 440px;
+    height: 200px;
+    display: none;
+    z-index: 9999;
+    padding: 20px;
+}
+
+
+
+#boxes #dialog {
+    width: 750px;
+    height: 300px;
+
+    background-color: #ffffff;
+
+}
+
+
+
+#popupfoot {
+
+    /*position: absolute;
+    bottom: 0px;
+    width: 250px;
+    left: 250px;*/
+}
+
+#tableContatoNovo tr td {
+    padding: 5px 5px 5px 5px;
+}
+
+table.CadPro tr td {
+    padding: 0px 10px 10px 0px;
+}
+
+#tablePosVenda tr td {
+    padding: 5px 20px 5px 5px;
+}
+
+#origem {
+    width: 160px;
+}
+
+#origem {
+    width: 160px;
+    height: 26px;
+}
+
+#fone {
+    width: 160px;
+    text-align: center;
+}
+
+#nomeEmpresa {
+    width: 400px;
+}
+
+#tableContatoNovoPessoa tr td {
+    padding: 5px 5px 5px 5px;
+}
+
+#tablePosVendaPessoa tr td {
+    padding: 5px 60px 10px 10px;
+}
+
+#cargo {
+    width: 300px;
+}
+
+#tableContatoNovoContato tr td, th {
+    padding: 5px 5px 5px 5px;
+}
+
+#tablePosVendaContato tr td, th {
+    padding: 5px 5px 5px 5px;
+}
+
+.height26 {
+    height: 26px;
+}
+
+.width100 {
+    width: 120px;
+}
+
+#tableContatoNovoProdutosAtual tr td, th {
+    padding: 5px 5px 5px 5px;
+}
+
+#qtdLinhaAtual {
+    width: 80px;
+}
+
+#gastoAtual {
+    width: 80px;
+}
+
+#tableContatoNovoProdutosProposta tr td, th {
+    padding: 5px 5px 5px 5px;
+}
+
+.width80 {
+    width: 80px;
+    border: none;
+    outline: none;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+    text-align: right;
+}
+
+#observacaoGeral {
+    width: 600px;
+    height: 80px;
+}
+
+#tableContatoNovoData tr td {
+    padding: 5px 5px 5px 5px;
+}
+
+#tableContatoNovoStatus tr td {
+    padding: 5px 5px 5px 5px;
+}
+
+#tablePosVendaStatus tr td {
+    padding: 5px 50px 1px 1px;
+}
+
+#tableContatoNovoRetorno tr td {
+    padding: 2px 5px 2px 5px;
+}
+
+#tablePosVendaRetorno tr td {
+    padding: 2px 5px 2px 5px;
+}
+
+/* BOTÕES */
+
+.btnNovo {
+    background-color: #F0AD4E; /* Green */
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.btnYellow {
+    background-color: white;
+    color: #444;
+    border: 1px solid #F0AD4E;
+}
+
+    .btnYellow:hover {
+        background-color: #F0AD4E;
+        color: white;
+    }
+
+.btnGreen {
+    background-color: white;
+    color: #444;
+    border: 1px solid #5CB85C;
+}
+
+    .btnGreen:hover {
+        background-color: #5CB85C;
+        color: white;
+    }
+
+.btnRed {
+    background-color: white;
+    color: #444;
+    border: 1px solid #D9534F;
+}
+
+    .btnRed:hover {
+        background-color: #D9534F;
+        color: white;
+    }
+
+.btnWhite {
+    background-color: white;
+    color: #444;
+    border: 1px solid #CCC;
+}
+
+    .btnWhite:hover {
+        background-color: #CCC;
+        color: white;
+    }
+
+.btnBlue {
+    background-color: white;
+    color: #444;
+    border: 1px solid #5BC0DE;
+}
+
+    .btnBlue:hover {
+        background-color: #5BC0DE;
+        color: white;
+    }
+
+.btnDarkBlue {
+    background-color: white;
+    color: #444;
+    border: 1px solid #428bca;
+}
+
+    .btnDarkBlue:hover {
+        background-color: #428bca;
+        color: white;
+    }
+
+.btnLixo {
+    color: #333;
+    border: none;
+}
+
+    .btnLixo:focus {
+        color: #333;
+        border: none;
+    }
+
+    .btnLixo:hover {
+        color: #C90000;
+        border: none;
+    }
+
+.btnChave {
+    color: #333;
+    background-color: #FFF;
+    border: none;
+}
+
+    .btnChave:focus {
+        color: #333;
+        background-color: #FFF;
+        border: none;
+    }
+
+    .btnChave:hover {
+        color: #0277BD;
+        background-color: #FFF;
+        border: none;
+    }
+
+
+.btnTel {
+    color: #333;
+    background-color: #FFF;
+    border: none;
+}
+
+    .btnTel:focus {
+        color: #333;
+        background-color: #FFF;
+        border: none;
+    }
+
+    .btnTel:hover {
+        color: #BF360C;
+        background-color: #FFF;
+        border: none;
+    }
+
+.btnPesquisar {
+    color: #333;
+    background-color: #FFF;
+    border: none;
+}
+
+    .btnPesquisar:focus {
+        color: #333;
+        background-color: #FFF;
+        border: none;
+    }
+
+    .btnPesquisar:hover {
+        color: #000;
+        background-color: #FFF;
+        border: none;
+    }
+
+.btn-pen {
+    color: #333;
+    border: none;
+}
+
+    .btn-pen.focus, .btn-pen:focus {
+        color: #333;
+        border: none;
+    }
+
+    .btn-pen:hover {
+        color: #D5A501;
+        border: none;
+    }
+
+.autocomplete-wrapper {
+    margin: 44px auto 44px;
+    max-width: 600px;
+}
+
+    .autocomplete-wrapper label {
+        display: block;
+        margin-bottom: .75em;
+        color: #3f4e5e;
+        font-size: 1.25em;
+    }
+
+    .autocomplete-wrapper .text-field {
+        padding: 0 15px;
+        width: 100%;
+        height: 40px;
+        border: 1px solid #CBD3DD;
+        font-size: 1.125em;
+    }
+
+    .autocomplete-wrapper ::-webkit-input-placeholder {
+        color: #CBD3DD;
+        font-style: italic;
+        font-size: 18px;
+    }
+
+    .autocomplete-wrapper :-moz-placeholder {
+        color: #CBD3DD;
+        font-style: italic;
+        font-size: 18px;
+    }
+
+    .autocomplete-wrapper ::-moz-placeholder {
+        color: #CBD3DD;
+        font-style: italic;
+        font-size: 18px;
+    }
+
+    .autocomplete-wrapper :-ms-input-placeholder {
+        color: #CBD3DD;
+        font-style: italic;
+        font-size: 18px;
+    }
+
+.autocomplete-suggestions {
+    overflow: auto;
+    border: 1px solid #CBD3DD;
+    background: #FFF;
+}
+
+.autocomplete-suggestion {
+    overflow: hidden;
+    padding: 5px 15px;
+    white-space: nowrap;
+}
+
+.autocomplete-selected {
+    background: #F0F0F0;
+}
+
+/* ------------ MENU ATIVIDADE -----------*/
+
+    .navmid {
+        float: left;
+        background: #FFF;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #A9A9A9;
+        text-align: center;
+        cursor: pointer;
+        margin-left: -1px;
+    }
+
+    .navmid span {
+        margin-left: 4px;
+    }
+
+    .checked {
+        color: #FFF;
+        background: #D9534F;
+    }
+
+    .navmid:hover {
+        color: #FFF;
+        background: #D9534F;
+    }
+
+    .acao {
+        padding-left: 21px;
+        padding-right: 21px;
+    }

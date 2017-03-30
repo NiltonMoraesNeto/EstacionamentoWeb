@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/login.css" rel="stylesheet" />
+
+<script src="~/Scripts/modernizr-2.8.3.js"></script>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.maskedinput.min.js"></script>
+
+<style>
+    body {
+        background: #333 url(../../Img/bgbg.jpg);
+        background-repeat: repeat;
+        font-family: 'Source Sans Pro', sans-serif;
+        margin-top: 100;
+    }
+
+    form {
+        background: #333 url(../../Img/bgbg.jpg);
+        background-repeat: repeat;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .form {
+        width: 350px;
+        margin: 0 auto;
+        background: #2B2B2B;
+        border-radius: 6px 6px 6px 8px;
+    }
+
+    .header {
+        background: #242424;
+        border-radius: 6px 6px 0px 0px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 18pt;
+        color: #FFF;
+    }
+
+    .login {
+        width: 300px;
+        height: 30px;
+        line-height: 30px;
+        margin: 10px 0px 0px 4px;
+        background: #242424;
+        color: #FFF;
+        border-radius: 4px;
+        padding: 0 0 0 3%;
+        border: none;
+        outline: none;
+    }
+
+    .icon {
+        margin: 12px 0px 0px 10px;
+    }
+
+    .btn {
+        width: 330px;
+        height: 37px;
+        line-height: 26px;
+        margin: 0 10px 10px 10px;
+        background: #4886f9;
+        color: #FFF;
+        font: bold;
+        box-shadow: 0 3px #4886f9;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            color: #FFF;
+            box-shadow: 0 2px #4886f9;
+            transition: box-shadow 0.3s;
+        }
+
+            .btn:hover a:active {
+                color: #FFF;
+                box-shadow: 0 2px #4886f9;
+            }
+
+    .footer {
+        background: #242424;
+        border-radius: 0px 0px 6px 6px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14;
+        padding: 0 3%;
+    }
+
+    .footer a {
+        color: #ffffff;
+    }
+
+    .modal-content {
+        border-radius: 0px;
+        background: #FFFFFF;
+        border: 3px solid #CCC;
+        margin: 100px auto;
+    }
+
+    .modal-content span.font {
+        font-weight: 300;
+        font-size: 24px;
+    }
+
+    table.tablespc tr td {
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    .modal-header hr {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+    button {
+        border-radius: 3px;
+    }
+
+    .capsLook {
+        width: 315px;
+        height: 28px;
+        margin-top: 5px;
+        color: #F57B0F;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        visibility: hidden;
+    }
+
+</style>
+@{ Html.RenderPartial("_Alerts"); }
+<body>
+    <form action="@Url.Action("Login", "Usuarios")" id="formLogin" method="POST">
+        <div style="text-align: center">
+            @*<img src="../../Img/Clarovideo.png" width="235" height="85">*@
+        </div> <br />
+        <div class="form">
+            <div style="text-align: center" class="header">
+                <h2>RELATÓRIOS FATOR</h2>
+            </div>
+            
+            <table>
+                <tr> <td><img class="icon" src="../../Img/user.png"></td> <td><input type="text" class="login" placeholder="LOGIN" name="login"></td> </tr>
+                <tr> <td><img class="icon" src="../../Img/lock.png"></td> <td><input type="password" class="login" placeholder="Senha" name="password" onkeypress="capLock(event)"></td> </tr>                
+            </table>
+            <div id="divMayus" class="capsLook">
+                <img src="~/Img/icons/attention.png" style="vertical-align: bottom" />&nbsp;CAPS LOCK ATIVADO
+            </div>
+            
+            <div align="center">
+                <button id="entrar" class="btn">ENTRAR</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+<script>
+
+    $(".cpf").mask("999.999.999-99");
+
+
+    $(".btn").click(function() {
+        $("#formLogin").submit();
+    });
+
+</script>
+
+<script language="Javascript">
+    function capLock(e) {
+        kc = e.keyCode ? e.keyCode : e.which;
+        sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+        if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk))
+            document.getElementById('divMayus').style.visibility = 'visible';
+        else
+            document.getElementById('divMayus').style.visibility = 'hidden';
+    }
+</script>

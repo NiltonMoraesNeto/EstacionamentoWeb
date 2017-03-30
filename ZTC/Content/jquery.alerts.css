@@ -1,0 +1,159 @@
+/*#popup_container {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	min-width: 300px; 
+	max-width: 600px; 
+	background: #FFF;
+	border: solid 5px #999;
+	color: #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#popup_title {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.75em;
+	color: #666;
+	background: #CCC url(images/title.gif) top repeat-x;
+	border: solid 1px #FFF;
+	border-bottom: solid 1px #999;
+	cursor: default;
+	padding: 0em;
+	margin: 0em;
+}
+
+#popup_content {
+	background: 16px 16px no-repeat url(images/info.gif);
+	padding: 1em 1.75em;
+	margin: 0em;
+}
+
+#popup_content.alert {
+	background-image: url(images/info.gif);
+}
+
+#popup_content.confirm {
+	background-image: url(images/important.gif);
+}
+
+#popup_content.prompt {
+	background-image: url(images/help.gif);
+}
+
+#popup_message {
+	padding-left: 48px;
+}
+
+#popup_panel {
+	text-align: center;
+	margin: 1em 0em 0em 1em;
+}
+
+#popup_prompt {
+	margin: .5em 0em;
+}*/
+#popup_panel {
+	margin-top:15px ;
+}
+#popup_message {
+    font-size: 16px;
+    text-align: center;
+}
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.confirm {
+    position: absolute;
+    width: 400px;
+    height: auto;
+    background: #fff;
+    border-radius: 0px;
+    padding: 0;
+    border: 3px solid #e5e5e5;
+    animation: fade 0.2s ease 1 forwards;
+}
+
+    .confirm h1 {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 1.5rem 1rem 0.5rem;
+        color: #c90000;
+        
+    }
+
+    .confirm p {
+        text-align: center;
+        font-size: 16px;
+        margin: 0 2rem 4.5rem;
+    }
+
+    .confirm button {
+        background: transparent;
+        border: none;
+        color: #1678E5;
+        height: 3rem;
+        font-size: 1rem;
+        width: 50%;
+        position: absolute;
+        bottom: 0;
+        cursor: pointer;
+    }
+
+    .confirm input.btn-alert {
+        border: 0px;
+        border-top: 1px solid #B4B4B4;
+        left: 0;
+        height: 50px;
+        background: #fff;
+        text-decoration: none;
+    }
+
+    .confirm input.btn-alert2 {
+         border: 0px;
+        border-top: 1px solid #B4B4B4;
+        border-left: 1px solid #B4B4B4;
+        right: 0;
+        height: 50px;
+        background: #fff;
+        text-decoration: none;
+    }
+
+
+        .confirm input.btn-alert:hover {
+            font-weight: bold;
+            background: #EFEFEF;
+        }
+
+        .confirm input.btn-alert:active {
+            background: #D6D6D6;
+        }
+
+        .confirm input.btn-alert2:hover {
+            font-weight: bold;
+            background: #EFEFEF;
+        }
+
+        .confirm input.btn-alert2:active {
+            background: #D6D6D6;
+        }
+
+    .confirm .half {
+        width: 49%;
+    }
+
+    .confirm .full {
+        width: 100%;
+    }
