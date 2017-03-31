@@ -1,0 +1,21 @@
+﻿@using ZTC.Models
+@{
+    var alerts = TempData.ContainsKey(Alert.TempDataKey)
+                ? (List<Alert>
+    )TempData[Alert.TempDataKey]
+    : new List<Alert>
+        ();
+
+        foreach (var alert in alerts)
+        {
+        var dismissableClass = alert.Dismissable ? "alert-dismissable" : null;
+        <div class="alert alert-@alert.AlertStyle @dismissableClass alert-float-bottom">
+            @if (alert.Dismissable)
+            {
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            }
+            <strong>@alert.Title</strong>
+            @Html.Raw(alert.Message)
+        </div>
+        }
+}

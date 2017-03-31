@@ -95,14 +95,14 @@ namespace ZTC.Controllers
             }
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult Login(FormCollection collection)
         {
             try
             {
                 UsuariosBll bll = new UsuariosBll();
                 Usuarios usuarioLogin = new Usuarios();
-                usuarioLogin.Email = collection["login"];
+                //usuarioLogin.Email = collection["login"];
                 usuarioLogin.CPF = collection["cpf"];
                 usuarioLogin.Senha = collection["password"].Trim();
 
@@ -111,7 +111,7 @@ namespace ZTC.Controllers
                 var licencaBll = new UsuarioslicencasBll();
                 Usuarioslicencas licenca = null;
 
-                if (usuario.Perfil.Nome.ToLower() == "desenvolvedor")
+                if (usuario.Perfil.Nome.ToLower() == "Administrador")
                 {
                     //licenca = new Usuarioslicencas()
                     //{
