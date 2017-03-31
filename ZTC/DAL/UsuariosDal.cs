@@ -31,6 +31,7 @@ namespace ZTC.Dal
             parms.Add(new MySqlParameter("@Status", o.Status));
             parms.Add(new MySqlParameter("@Email", !String.IsNullOrEmpty(o.Email) ? o.Email : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@CPF", !String.IsNullOrEmpty(o.CPF) ? o.CPF : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Excluido", o.Excluido));
 
 
             if (!o.Persisted)
@@ -113,7 +114,7 @@ namespace ZTC.Dal
             if (dr["CPF"] != DBNull.Value)
                 o.CPF = Convert.ToString(dr["CPF"]);
 
-            //o.Excluido = Convert.ToBoolean(dr["Excluido"]);
+            o.Excluido = Convert.ToBoolean(dr["Excluido"]);
 
             o.Persisted = true;
         }

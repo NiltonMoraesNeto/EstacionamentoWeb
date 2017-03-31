@@ -85,7 +85,7 @@
                         <span class="profile-ava">
                             <!--<img alt="" src="~/img/avatar1_small.jpg">-->
                         </span>
-                        @*<span class="username">
+                        <span class="username">
                             @if (SessionContext.UsuarioLogado != null)
                             {
                                 if (SessionContext.UsuarioLogado.Usuarios != null)
@@ -93,10 +93,10 @@
                                     @Html.Raw(SessionContext.UsuarioLogado.Usuarios.NomeUsuario + " - " + SessionContext.UsuarioLogado.Usuarios.Perfil.Nome);
                                 }
                             }
-                    </span>*@
+                    </span>
                     <b class="caret"></b>
                 </a>
-                @*<ul class="dropdown-menu extended logout">
+                <ul class="dropdown-menu extended logout">
                     <div class="log-arrow-up"></div>
                     <li class="eborder-top">
                         <a href="@Url.Action("MyProfile", "Usuarios")"><span class="glyphicon glyphicon-user"></span> Meu Perfil</a>
@@ -105,7 +105,7 @@
                     <li>
                         <a href="@Url.Action("LogOff","Usuarios")"><span class="glyphicon glyphicon-log-out"></span>  Sair</a>
                     </li>
-                </ul>*@
+                </ul>
             </li>
             <!-- user login dropdown end -->
         </ul>

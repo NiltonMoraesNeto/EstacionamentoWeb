@@ -9,14 +9,13 @@ using ZTC.Model;
 using ZTC.Models;
 using ZTC.Models.ENUMS;
 using System.Net.Mail;
-using System.Web.Security;
 
 namespace ZTC.Controllers
 {
     public class UsuariosController : BaseController
     {
-        [AccessDeniedAuthorizeAttribute]
-        [AccessDeniedAuthorizeAttribute(Roles = "Administrador,Funcionário")]
+        //[AccessDeniedAuthorizeAttribute]
+        //[AccessDeniedAuthorizeAttribute(Roles = "Administrador,Funcionário")]
         // GET: Usuarios
         public ActionResult Index()
         {
@@ -95,13 +94,19 @@ namespace ZTC.Controllers
             }
         }
 
-        //[HttpPost]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult Login(FormCollection collection)
         {
             try
             {
                 UsuariosBll bll = new UsuariosBll();
                 Usuarios usuarioLogin = new Usuarios();
+                usuarioLogin.Persisted = true;
                 //usuarioLogin.Email = collection["login"];
                 usuarioLogin.CPF = collection["cpf"];
                 usuarioLogin.Senha = collection["password"].Trim();
@@ -165,6 +170,15 @@ namespace ZTC.Controllers
                 
                 return View();
             }
+        }
+
+
+        public ActionResult LogOff()
+        {
+            SessionContext.UsuarioLogado = null;
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Login", "Usuarios");
         }
 
     }

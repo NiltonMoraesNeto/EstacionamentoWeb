@@ -23,7 +23,7 @@ namespace ZTC.Bll
                     if (!o.Persisted)
                     {
                         //o.SenhaExpirada = DateTime.Now.AddDays(o.ValidadeSenha);
-                        //o.Senha = o.GetMD5Hash();
+                        o.Senha = o.GetMD5Hash();
                         dao.Insert(o);
                         
 
@@ -196,8 +196,9 @@ namespace ZTC.Bll
                     usuarioLogin.Senha = usuario.Senha;
 
                     dao.Login(usuario);
-                    if (usuario.IdUsuario > 1 && usuario.Senha == usuarioLogin.GetMD5Hash())
-                    {
+                    if (usuario.IdUsuario > 1 && usuario.Senha == usuarioLogin.Senha)
+                        //if (usuario.IdUsuario > 1 && usuario.Senha == usuarioLogin.GetMD5Hash())
+                        {
                         CompleteRelatedObjects(usuario, dal);
                         
                     }
