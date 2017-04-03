@@ -113,7 +113,10 @@
 
 
 
+
 <div class="content" style="padding: 10px; width: 1120px">
+    <input type="button" name="button" class="btn btnGreen" value="Adicionar Mensalista" onclick='javascript: location.href = "@Url.Action("Create", "Mensalista")"' />
+    <br /><br />
     @*<input type="button" name="button" class="btn btnGreen" value="Adicionar Função" onclick='javascript: location.href = "@Url.Action("Create", "Licencasfuncoes")"' />
         <br /><br />*@
     <!--Relatorio funil-->
@@ -142,6 +145,15 @@
             <th style="text-align:center">
                 Celular
             </th>
+            <th style="text-align:center">
+                Carro
+            </th>
+            <th style="text-align:center">
+                Placa
+            </th>
+            <th style="text-align:center">
+                Período
+            </th>
            <th style="text-align:center">Ações</th>
         </tr>
 
@@ -156,6 +168,15 @@
                 </td>
                 <td style="text-align:center">
                     @Html.DisplayFor(modelItem => item.TelefoneCelular)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.Carro)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.Placa)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.Periodo)
                 </td>
                 <td style="text-align:center">
                         <a href="@Url.Action("Edit", "Mensalista", new { id = item.IdMensalista })" class="btn btn-xs btn-pen tooltipicon" data-title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>

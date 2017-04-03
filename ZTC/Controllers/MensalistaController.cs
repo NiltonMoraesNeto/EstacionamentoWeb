@@ -15,6 +15,7 @@ namespace ZTC.Controllers
     public class MensalistaController : BaseController
     {
         // GET: Mensalista
+        [AccessDeniedAuthorize]
         public ActionResult Index()
         {
             var mensalista = new List<Mensalista>();

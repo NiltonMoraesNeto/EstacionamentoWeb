@@ -38,6 +38,12 @@ namespace ZTC.Dal
             parms.Add(new MySqlParameter("@Cidade", !String.IsNullOrEmpty(o.Cidade) ? o.Cidade : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@Estado", !String.IsNullOrEmpty(o.Estado) ? o.Estado : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@Complemento", !String.IsNullOrEmpty(o.Complemento) ? o.Complemento : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Marca", !String.IsNullOrEmpty(o.Marca) ? o.Marca : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Carro", !String.IsNullOrEmpty(o.Carro) ? o.Carro : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Placa", !String.IsNullOrEmpty(o.Placa) ? o.Placa : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Cor", !String.IsNullOrEmpty(o.Cor) ? o.Cor : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@ValorMensal", o.ValorMensal));
+            parms.Add(new MySqlParameter("@Periodo", o.Periodo.HasValue ? o.Periodo : (object)DBNull.Value));
 
 
 
@@ -56,9 +62,9 @@ namespace ZTC.Dal
         public void Insert(Mensalista o)
         {
             String sql = "INSERT INTO Mensalista (Nome, CPF, DataNascimento, TelefoneFixo, TelefoneCelular, CEP, " +
-                         "Rua, Bairro, Cidade, Estado, Complemento)" +
+                         "Rua, Bairro, Cidade, Estado, Complemento, Marca, Carro, Placa, Cor, ValorMensal, Periodo, Vencimento)" +
                          " VALUES (@Nome, @CPF, @DataNascimento, @TelefoneFixo, @TelefoneCelular, @CEP, " +
-                         "@Rua, @Bairro, @Cidade, @Estado, @Complemento);" +
+                         "@Rua, @Bairro, @Cidade, @Estado, @Complemento, @Marca, @Carro, @Placa, @Cor, @ValorMensal, @Periodo, @Vencimento);" +
                          "Select LAST_INSERT_ID();";
 
             var parms = GetParameters(o);
@@ -71,6 +77,8 @@ namespace ZTC.Dal
             String sql = "UPDATE Mensalista SET Nome = @Nome, CPF = @CPF, DataNascimento = @DataNascimento, " + 
                          "TelefoneFixo = @TelefoneFixo, TelefoneCelular = @TelefoneCelular, CEP = @CEP, " +
                          "Rua = @Rua, Bairro = @Bairro, Cidade = @Cidade, Estado = @Estado, Complemento = @Complemento" +
+                         "Marca = @Marca, Carro = @Carro, Placa = @Placa, Cor = @Cor, ValorMensal = @ValorMensal, " + 
+                         "Periodo = @Periodo, Vencimento = @Vencimento " +
                          "WHERE IdMensalista = @IdMensalista ";
 
             var parms = GetParameters(o);
@@ -90,8 +98,38 @@ namespace ZTC.Dal
             o.IdMensalista = Convert.ToInt32(dr["IdMensalista"]);
             if (dr["Nome"] != DBNull.Value)
                 o.Nome = Convert.ToString(dr["Nome"]);
+            if (dr["CPF"] != DBNull.Value)
+                o.CPF = Convert.ToString(dr["CPF"]);
             if (dr["DataNascimento"] != DBNull.Value)
                 o.DataNascimento = Convert.ToDateTime(dr["DataNascimento"]);
+            if (dr["TelefoneFixo"] != DBNull.Value)
+                o.TelefoneFixo = Convert.ToString(dr["TelefoneFixo"]);
+            if (dr["TelefoneCelular"] != DBNull.Value)
+                o.TelefoneCelular = Convert.ToString(dr["TelefoneCelular"]);
+            if (dr["CEP"] != DBNull.Value)
+                o.CEP = Convert.ToString(dr["CEP"]);
+            if (dr["Rua"] != DBNull.Value)
+                o.Rua = Convert.ToString(dr["Rua"]);
+            if (dr["Bairro"] != DBNull.Value)
+                o.Bairro = Convert.ToString(dr["Bairro"]);
+            if (dr["Cidade"] != DBNull.Value)
+                o.Cidade = Convert.ToString(dr["Cidade"]);
+            if (dr["Estado"] != DBNull.Value)
+                o.Estado = Convert.ToString(dr["Estado"]);
+            if (dr["Complemento"] != DBNull.Value)
+                o.Complemento = Convert.ToString(dr["Complemento"]);
+            if (dr["Marca"] != DBNull.Value)
+                o.Marca = Convert.ToString(dr["Marca"]);
+            if (dr["Carro"] != DBNull.Value)
+                o.Carro = Convert.ToString(dr["Carro"]);
+            if (dr["Placa"] != DBNull.Value)
+                o.Placa = Convert.ToString(dr["Placa"]);
+            if (dr["Cor"] != DBNull.Value)
+                o.Cor = Convert.ToString(dr["Cor"]);
+            if (dr["ValorMensal"] != DBNull.Value)
+                o.ValorMensal = Convert.ToDecimal(dr["ValorMensal"]);            
+            if (dr["Periodo"] != DBNull.Value)
+                o.Periodo = TimeSpan.Parse("Periodo");
 
             o.Persisted = true;
         }

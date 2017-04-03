@@ -23,6 +23,13 @@ namespace ZTC.Model
         private string _cidade;
         private string _estado;
         private string _complemento;
+        private string _marca;
+        private string _carro;
+        private string _placa;
+        private string _cor;
+        private decimal _valorMensal;
+        private TimeSpan? _periodo;
+        private string _vencimento;
         #endregion
 
         #region Propriedades
@@ -88,6 +95,41 @@ namespace ZTC.Model
         {
             get { return _complemento; }
             set { _complemento = value; }
+        }
+        public string Marca
+        {
+            get { return _marca; }
+            set { _marca = value; }
+        }
+        public string Carro
+        {
+            get { return _carro; }
+            set { _carro = value; }
+        }
+        public string Placa
+        {
+            get { return _placa; }
+            set { _placa = value; }
+        }
+        public string Cor
+        {
+            get { return _cor; }
+            set { _cor = value; }
+        }
+        public decimal ValorMensal
+        {
+            get { return _valorMensal; }
+            set { _valorMensal = value; }
+        }
+        public TimeSpan? Periodo
+        {
+            get { return _periodo; }
+            set { _periodo = value; }
+        }
+        public string Vencimento
+        {
+            get { return _vencimento; }
+            set { _vencimento = value; }
         }
 
         public bool Persisted { get; set; }

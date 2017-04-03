@@ -171,9 +171,12 @@
     <Content Include="Content\images\title.gif" />
     <Content Include="Content\images\tw.png" />
     <Content Include="Content\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\jquery-3.1.1.min.js" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery.alerts.css" />
     <Content Include="Content\jquery.fileupload.css" />
+    <Content Include="Content\jquery.searchabledropdown-1.0.8.min.js" />
+    <Content Include="Content\jquery.searchabledropdown-1.0.8.src.js" />
     <Content Include="Content\jquery.tzCheckbox.css" />
     <Content Include="Content\line-icons.css" />
     <Content Include="Content\login.css" />
@@ -727,6 +730,7 @@
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Mensalista\Index.cshtml" />
+    <Content Include="Views\Mensalista\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
