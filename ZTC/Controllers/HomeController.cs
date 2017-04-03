@@ -30,18 +30,21 @@ namespace ZTC.Controllers
         }
 
         // GET: Home/Details/5
+        [AccessDeniedAuthorize]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Home/Create
+        [AccessDeniedAuthorize]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Home/Create
+        [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -58,12 +61,14 @@ namespace ZTC.Controllers
         }
 
         // GET: Home/Edit/5
+        [AccessDeniedAuthorize]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Home/Edit/5
+        [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -80,12 +85,14 @@ namespace ZTC.Controllers
         }
 
         // GET: Home/Delete/5
+        [AccessDeniedAuthorize]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Home/Delete/5
+        [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

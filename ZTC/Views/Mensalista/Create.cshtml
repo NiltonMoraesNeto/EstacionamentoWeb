@@ -21,75 +21,78 @@
 
 <script src="~/Content/jquery.searchabledropdown-1.0.8.src.js"></script>
 @*<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>*@
-<script src="~/Content/jquery-3.1.1.min.js"></script>
+@*<script src="~/Content/jquery-3.1.1.min.js"></script>*@
 <script type="text/javascript">
 
-    $(document).ready(function () {
+     function limpa_formulário_cep() {
+         //Limpa valores do formulário de cep.
+         document.getElementById('Rua').value = ("");
+         document.getElementById('Bairro').value = ("");
+         document.getElementById('Cidade').value = ("");
+         document.getElementById('Estado').value = ("");
+         //document.getElementById('ibge').value = ("");
+     }
 
-        function limpa_formulário_cep() {
-            // Limpa valores do formulário de cep.
-            $("#rua").val("");
-            $("#bairro").val("");
-            $("#cidade").val("");
-            $("#uf").val("");
-            $("#ibge").val("");
-        }
+     function meu_callback(conteudo) {
+         if (!("erro" in conteudo)) {
+             //Atualiza os campos com os valores.
+             document.getElementById('Rua').value = (conteudo.logradouro);
+             document.getElementById('Bairro').value = (conteudo.bairro);
+             document.getElementById('Cidade').value = (conteudo.localidade);
+             document.getElementById('Estado').value = (conteudo.uf);
+             //document.getElementById('ibge').value = (conteudo.ibge);
+         } //end if.
+         else {
+             //CEP não Encontrado.
+             limpa_formulário_cep();
+             alert("CEP não encontrado.");
+         }
+     }
 
-        //Quando o campo cep perde o foco.
-        $("#cep").blur(function () {
+     function pesquisacep(valor) {
 
-            //Nova variável "cep" somente com dígitos.
-            var cep = $(this).val().replace(/\D/g, '');
+         //Nova variável "cep" somente com dígitos.
+         var cep = valor.replace(/\D/g, '');
 
-            //Verifica se campo cep possui valor informado.
-            if (cep != "") {
+         //Verifica se campo cep possui valor informado.
+         if (cep != "") {
 
-                //Expressão regular para validar o CEP.
-                var validacep = /^[0-9]{8}$/;
+             //Expressão regular para validar o CEP.
+             var validacep = /^[0-9]{8}$/;
 
-                //Valida o formato do CEP.
-                if (validacep.test(cep)) {
+             //Valida o formato do CEP.
+             if (validacep.test(cep)) {
 
-                    //Preenche os campos com "..." enquanto consulta webservice.
-                    $("#rua").val("...");
-                    $("#bairro").val("...");
-                    $("#cidade").val("...");
-                    $("#uf").val("...");
-                    $("#ibge").val("...");
+                 //Preenche os campos com "..." enquanto consulta webservice.
+                 document.getElementById('Rua').value = "...";
+                 document.getElementById('Bairro').value = "...";
+                 document.getElementById('Cidade').value = "...";
+                 document.getElementById('Estado').value = "...";
+                 //document.getElementById('ibge').value = "...";
 
-                    //Consulta o webservice viacep.com.br/
-                    $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+                 //Cria um elemento javascript.
+                 var script = document.createElement('script');
 
-                        if (!("erro" in dados)) {
-                            //Atualiza os campos com os valores da consulta.
-                            $("#rua").val(dados.logradouro);
-                            $("#bairro").val(dados.bairro);
-                            $("#cidade").val(dados.localidade);
-                            $("#uf").val(dados.uf);
-                            $("#ibge").val(dados.ibge);
-                        } //end if.
-                        else {
-                            //CEP pesquisado não foi encontrado.
-                            limpa_formulário_cep();
-                            alert("CEP não encontrado.");
-                        }
-                    });
-                } //end if.
-                else {
-                    //cep é inválido.
-                    limpa_formulário_cep();
-                    alert("Formato de CEP inválido.");
-                }
-            } //end if.
-            else {
-                //cep sem valor, limpa formulário.
-                limpa_formulário_cep();
-            }
-        });
-    });
+                 //Sincroniza com o callback.
+                 script.src = '//viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+                 //Insere script no documento e carrega o conteúdo.
+                 document.body.appendChild(script);
+
+             } //end if.
+             else {
+                 //cep é inválido.
+                 limpa_formulário_cep();
+                 alert("Formato de CEP inválido.");
+             }
+         } //end if.
+         else {
+             //cep sem valor, limpa formulário.
+             limpa_formulário_cep();
+         }
+     };
 
 </script>
-
 
 
 <h2>Criar Novo Mensalista</h2>
@@ -132,21 +135,107 @@
                     @Html.ValidationMessageFor(model => model.TelefoneCelular, "", new { @class = "text-danger" })
                 </td>
             </tr>
+            <tr>
+                <td>CEP</td>
+                <td>
+                    @Html.EditorFor(model => model.CEP, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px", @maxlength = "8", @onblur = "pesquisacep(this.value);" } })
+                    @Html.ValidationMessageFor(model => model.CEP, "", new { @class = "text-danger" })
+                </td>
+            </tr>
 
 
             <tr>
-                <td colspan="4">
-                    <input type="submit" value="Salvar" class="btn btnGreen" style="width: 85px; height: 34px; margin-left: 160px" />
-                    <a href='@Url.Action("/", "Mensalista")'>
-                        <input type="button" class="btn btnWhite dropdown-toggle" style="width: 85px; height: 34px;" value="Cancelar" />
-                    </a>
+                <td>Rua</td>
+                <td>
+                    @Html.EditorFor(model => model.Rua, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Rua, "", new { @class = "text-danger" })
+                </td>
+                <td width="92px">Bairro</td>
+                <td>
+                    @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Bairro, "", new { @class = "text-danger" })
                 </td>
             </tr>
-        </table>
+
+            <tr>
+                <td>Cidade</td>
+                <td>
+                    @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Cidade, "", new { @class = "text-danger" })
+                </td>
+                <td width="92px">Estado</td>
+                <td>
+                    @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>Complemento</td>
+                <td>
+                    @Html.EditorFor(model => model.Complemento, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Complemento, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>Dados do Carro</td>
+                
+            </tr>
+            <tr>
+                <td>Marca</td>
+                <td>
+                    @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "text-danger" })
+                </td>
+                <td width="92px">Carro</td>
+                <td>
+                    @Html.EditorFor(model => model.Carro, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Carro, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>Placa</td>
+                <td>
+                    @Html.EditorFor(model => model.Placa, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Placa, "", new { @class = "text-danger" })
+                </td>
+                <td width="92px">Cor</td>
+                <td>
+                    @Html.EditorFor(model => model.Cor, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Cor, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            
+
+
+
+
+
+
+                <tr>
+                    <td colspan="4">
+                        <input type="submit" value="Salvar" class="btn btnGreen" style="width: 85px; height: 34px; margin-left: 160px" />
+                        <a href='@Url.Action("/", "Mensalista")'>
+                            <input type="button" class="btn btnWhite dropdown-toggle" style="width: 85px; height: 34px;" value="Cancelar" />
+                        </a>
+                    </td>
+                </tr>
+            </table>
         
        
     }
 
 </div>
+
+<script>
+
+     $(function ($) {
+         $("#Placa").mask("aaa-9999");
+         
+
+     });
+
+</script>
 
 

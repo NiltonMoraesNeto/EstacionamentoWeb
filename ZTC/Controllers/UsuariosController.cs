@@ -17,24 +17,28 @@ namespace ZTC.Controllers
         //[AccessDeniedAuthorizeAttribute]
         //[AccessDeniedAuthorizeAttribute(Roles = "Administrador,Funcionário")]
         // GET: Usuarios
+        [AccessDeniedAuthorize]
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: Usuarios/Details/5
+        [AccessDeniedAuthorize]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Usuarios/Create
+        [AccessDeniedAuthorize]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Usuarios/Create
+        [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -51,12 +55,14 @@ namespace ZTC.Controllers
         }
 
         // GET: Usuarios/Edit/5
+        [AccessDeniedAuthorize]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Usuarios/Edit/5
+        [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -73,12 +79,14 @@ namespace ZTC.Controllers
         }
 
         // GET: Usuarios/Delete/5
+        [AccessDeniedAuthorize]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Usuarios/Delete/5
+        [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -93,6 +101,7 @@ namespace ZTC.Controllers
                 return View();
             }
         }
+
 
         public ActionResult Login()
         {

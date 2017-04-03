@@ -30,18 +30,21 @@ namespace ZTC.Controllers
         }
 
         // GET: Mensalista/Details/5
+        [AccessDeniedAuthorize]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Mensalista/Create
+        [AccessDeniedAuthorize]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Mensalista/Create
+        [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -58,12 +61,14 @@ namespace ZTC.Controllers
         }
 
         // GET: Mensalista/Edit/5
+        [AccessDeniedAuthorize]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Mensalista/Edit/5
+        [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -80,12 +85,14 @@ namespace ZTC.Controllers
         }
 
         // GET: Mensalista/Delete/5
+        [AccessDeniedAuthorize]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Mensalista/Delete/5
+        [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
