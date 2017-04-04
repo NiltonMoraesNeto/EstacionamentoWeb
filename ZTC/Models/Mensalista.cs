@@ -28,7 +28,7 @@ namespace ZTC.Model
         private string _placa;
         private string _cor;
         private decimal _valorMensal;
-        private TimeSpan? _periodo;
+        private string _periodo;
         private string _vencimento;
         #endregion
 
@@ -121,11 +121,16 @@ namespace ZTC.Model
             get { return _valorMensal; }
             set { _valorMensal = value; }
         }
-        public TimeSpan? Periodo
+        public string Periodo
         {
             get { return _periodo; }
             set { _periodo = value; }
         }
+        //public TimeSpan? Periodo
+        //{
+        //    get { return _periodo; }
+        //    set { _periodo = value; }
+        //}
         public string Vencimento
         {
             get { return _vencimento; }

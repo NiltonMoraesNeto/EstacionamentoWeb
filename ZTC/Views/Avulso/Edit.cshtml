@@ -1,0 +1,125 @@
+﻿@model ZTC.Model.Avulso
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style>
+    #tableUsuario tr td {
+        padding: 5px 5px 5px 5px;
+    }
+
+    .error {
+        color: #a94442;
+    }
+
+    .tablespc tr td {
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+
+    span.font {
+        font-size: 24px;
+        font-weight: 300;
+        color: #333;
+    }
+</style>
+
+
+<h2>Editar Avulso</h2>
+
+<div class="content">
+
+@using (Html.BeginForm("Edit", "Avulso", FormMethod.Post, htmlAttributes: new { @id = "avulso" }))
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.IdAvulso)   
+    @Html.HiddenFor(model => model.Persisted)
+    
+    <table class="CadPro">
+        <tr>
+            <td>Nome Avulso</td>
+            <td>
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </td>
+            <td width="92px">CPF</td>
+            <td>
+                @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "input-pdr cpf", @style = "width:240px" } })
+                @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>Telefone Fixo</td>
+            <td>
+                @Html.EditorFor(model => model.TelefoneFixo, new { htmlAttributes = new { @class = "input-pdr telefone", @style = "width:240px" } })
+                @Html.ValidationMessageFor(model => model.TelefoneFixo, "", new { @class = "text-danger" })
+            </td>
+            <td width="92px">Celular</td>
+            <td>
+                @Html.EditorFor(model => model.TelefoneCelular, new { htmlAttributes = new { @class = "input-pdr telefone", @style = "width:240px" } })
+                @Html.ValidationMessageFor(model => model.TelefoneCelular, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Dados do Carro</td>
+
+        </tr>
+        <tr>
+            <td>Marca</td>
+            <td>
+                @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "text-danger" })
+            </td>
+            <td width="92px">Carro</td>
+            <td>
+                @Html.EditorFor(model => model.Carro, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                @Html.ValidationMessageFor(model => model.Carro, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>Placa</td>
+            <td>
+                @Html.EditorFor(model => model.Placa, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                @Html.ValidationMessageFor(model => model.Placa, "", new { @class = "text-danger" })
+            </td>
+            <td width="92px">Cor</td>
+            <td>
+                @Html.EditorFor(model => model.Cor, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px" } })
+                @Html.ValidationMessageFor(model => model.Cor, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Obs</td>
+            <td>
+                @Html.EditorFor(model => model.Obs, new { htmlAttributes = new { @class = "input-pdr", @style = "width:600px", @maxlength = "255" } })
+                @Html.ValidationMessageFor(model => model.Obs, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <input type="submit" value="Salvar" class="btn btnGreen" style="width: 85px; height: 34px; margin-left: 160px" />
+                <a href='@Url.Action("/", "Avulso")'>
+                    <input type="button" class="btn btnWhite dropdown-toggle" style="width: 85px; height: 34px;" value="Cancelar" />
+                </a>
+            </td>
+            
+        </tr>
+    </table>
+}
+
+
+</div>
+<script>
+
+     $(function ($) {
+         $("#Placa").mask("aaa-9999");
+
+
+     });
+
+</script>

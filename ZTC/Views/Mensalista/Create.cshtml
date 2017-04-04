@@ -105,7 +105,7 @@
 
         <table class="CadPro">
             <tr>
-                <td>Nome usuário</td>
+                <td>Nome Mensalista</td>
                 <td>
                     @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "input-pdr", @style = "width:500px" } })
                     @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
@@ -207,6 +207,32 @@
                 </td>
             </tr>
             
+            <tr>
+                <td>R$</td>
+
+            </tr>
+            <tr>
+                <td>Valor Mensal</td>
+                <td>
+                    @Html.EditorFor(model => model.ValorMensal, new { htmlAttributes = new { @class = "input-pdr moeda", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.ValorMensal, "", new { @class = "text-danger" })
+                </td>
+                <td width="92px">Período</td>
+                <td>
+                    @Html.EditorFor(model => model.Periodo, new { htmlAttributes = new { @class = "input-pdr hora", @style = "width:240px" } })
+                    @Html.ValidationMessageFor(model => model.Periodo, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>Vencimento</td>
+                <td>
+                    @Html.EditorFor(model => model.Vencimento, new { htmlAttributes = new { @class = "input-pdr", @style = "width:240px", @maxlength = "2" } })
+                    @Html.ValidationMessageFor(model => model.Vencimento, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+
 
 
 

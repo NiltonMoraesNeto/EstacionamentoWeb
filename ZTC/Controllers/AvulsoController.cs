@@ -12,47 +12,47 @@ using System.Net.Mail;
 
 namespace ZTC.Controllers
 {
-    public class MensalistaController : BaseController
+    public class AvulsoController : BaseController
     {
-        // GET: Mensalista
+        // GET: Avulso
         [AccessDeniedAuthorize]
         public ActionResult Index()
         {
-            var mensalista = new List<Mensalista>();
-            var bll = new MensalistaBll();
+            var avulso = new List<Avulso>();
+            var bll = new AvulsoBll();
 
             string sql = "";
 
-            //sql += " where MONTH(DataHoraSolicitacao) = MONTH(NOW()) and YEAR(DataHoraSolicitacao) = YEAR(NOW())  and TipoManutencao_Id = 2 ";
-            mensalista = bll.GetList(sql, true);
+            avulso = bll.GetList(sql, true);
 
-            return View(mensalista);
+            return View(avulso);
+
         }
 
-        // GET: Mensalista/Details/5
+        // GET: Avulso/Details/5
         [AccessDeniedAuthorize]
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Mensalista/Create
+        // GET: Avulso/Create
         [AccessDeniedAuthorize]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Mensalista/Create
+        // POST: Avulso/Create
         [AccessDeniedAuthorize]
         [HttpPost]
-        public ActionResult Create(Mensalista mensalista, FormCollection collection)
+        public ActionResult Create(Avulso avulso,FormCollection collection)
         {
             try
             {
-                var bll = new MensalistaBll();
+                var bll = new AvulsoBll();
 
-                bll.Save(mensalista);
+                bll.Save(avulso);
 
 
                 Success("Sucesso", "Salvo com sucesso!", true);
@@ -65,52 +65,52 @@ namespace ZTC.Controllers
             }
         }
 
-        // GET: Mensalista/Edit/5
+        // GET: Avulso/Edit/5
         [AccessDeniedAuthorize]
         public ActionResult Edit(int id)
         {
-            var bll = new MensalistaBll();
-            var mensalista = bll.GetObject(id);
+            var bll = new AvulsoBll();
+            var avulso = bll.GetObject(id);
 
 
 
 
-            if (mensalista == null)
+            if (avulso == null)
             {
                 return HttpNotFound();
             }
-            
-            return View(mensalista);
+
+            return View(avulso);
         }
 
-        // POST: Mensalista/Edit/5
+        // POST: Avulso/Edit/5
         [AccessDeniedAuthorize]
         [HttpPost]
-        public ActionResult Edit(Mensalista mensalista, FormCollection collection)
+        public ActionResult Edit(Avulso avulso, FormCollection collection)
         {
-            mensalista.Nome = collection["Nome"];
+            avulso.Nome = collection["Nome"];
             try
             {
-                var bll = new MensalistaBll();
-                bll.Save(mensalista);
+                var bll = new AvulsoBll();
+                bll.Save(avulso);
                 Success("Sucesso", "Salvo com sucesso!", true);
                 return RedirectToAction("/");
             }
             catch (Exception ex)
             {
                 Danger("Erro", string.Format(ex.Message), true);
-                return View(mensalista);
+                return View(avulso);
             }
         }
 
-        // GET: Mensalista/Delete/5
+        // GET: Avulso/Delete/5
         [AccessDeniedAuthorize]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Mensalista/Delete/5
+        // POST: Avulso/Delete/5
         [AccessDeniedAuthorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

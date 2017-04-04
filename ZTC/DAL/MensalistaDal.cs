@@ -43,7 +43,9 @@ namespace ZTC.Dal
             parms.Add(new MySqlParameter("@Placa", !String.IsNullOrEmpty(o.Placa) ? o.Placa : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@Cor", !String.IsNullOrEmpty(o.Cor) ? o.Cor : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@ValorMensal", o.ValorMensal));
-            parms.Add(new MySqlParameter("@Periodo", o.Periodo.HasValue ? o.Periodo : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Periodo", !String.IsNullOrEmpty(o.Periodo) ? o.Periodo : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Vencimento", !String.IsNullOrEmpty(o.Vencimento) ? o.Vencimento : (object)DBNull.Value));
+            //parms.Add(new MySqlParameter("@Periodo", o.Periodo.HasValue ? o.Periodo : (object)DBNull.Value));
 
 
 
@@ -76,7 +78,7 @@ namespace ZTC.Dal
         {
             String sql = "UPDATE Mensalista SET Nome = @Nome, CPF = @CPF, DataNascimento = @DataNascimento, " + 
                          "TelefoneFixo = @TelefoneFixo, TelefoneCelular = @TelefoneCelular, CEP = @CEP, " +
-                         "Rua = @Rua, Bairro = @Bairro, Cidade = @Cidade, Estado = @Estado, Complemento = @Complemento" +
+                         "Rua = @Rua, Bairro = @Bairro, Cidade = @Cidade, Estado = @Estado, Complemento = @Complemento, " +
                          "Marca = @Marca, Carro = @Carro, Placa = @Placa, Cor = @Cor, ValorMensal = @ValorMensal, " + 
                          "Periodo = @Periodo, Vencimento = @Vencimento " +
                          "WHERE IdMensalista = @IdMensalista ";
@@ -127,9 +129,13 @@ namespace ZTC.Dal
             if (dr["Cor"] != DBNull.Value)
                 o.Cor = Convert.ToString(dr["Cor"]);
             if (dr["ValorMensal"] != DBNull.Value)
-                o.ValorMensal = Convert.ToDecimal(dr["ValorMensal"]);            
+                o.ValorMensal = Convert.ToDecimal(dr["ValorMensal"]);
             if (dr["Periodo"] != DBNull.Value)
-                o.Periodo = TimeSpan.Parse("Periodo");
+                o.Periodo = Convert.ToString(dr["Periodo"]);
+            if (dr["Vencimento"] != DBNull.Value)
+                o.Vencimento = Convert.ToString(dr["Vencimento"]);
+            //if (dr["Periodo"] != DBNull.Value)
+            //    o.Periodo = TimeSpan.Parse("Periodo");
 
             o.Persisted = true;
         }
