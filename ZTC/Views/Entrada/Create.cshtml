@@ -1,0 +1,258 @@
+﻿@model ZTC.Model.Entrada
+
+@{
+    ViewBag.Title = "Criar Novo Mensalista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #tableUsuario tr td {
+        padding: 5px 5px 5px 5px;
+    }
+
+    .drop-down {
+        height: 20px;
+    }
+
+    .error {
+        color: #a94442;
+    }
+</style>
+
+
+
+<h2>Criar Nova Entrada</h2>
+<div class="content">
+
+    <form action="@Url.Action("Create", "Entrada")" method="POST" name="form1">
+        <input type="hidden" name="idMensalista" id="idMensalista" />
+        <input type="hidden" name="idAvulso" id="idAvulso" />
+        <table class="tablespc" style="margin-bottom: 10px">
+
+            <tr>
+                <td width="130px">
+                    <span>Placa</span>
+                </td>
+                <td colspan="5">
+                    <input type="text" name="placa" id="placa" class="input-pdr" style="width: 560px;" required="required" />
+                    <button id="btnBuscarPorNomeEmpresa" class="btnPesquisar tooltipicon" data-title="Pesquisar"><span class="glyphicon glyphicon-search"></span></button>
+                    <button type="button" name="limparCampos1" id="limparCampos1" value="Limpar" onclick="limparCampos()" title="Limpar Dados Empresa" alt="Limpar Dados Empresa" class="btn btn-sm btn-row glyphicon glyphicon-remove hide"></button>
+                </td>
+            </tr>
+            <tr>
+                <td>Carro</td>
+                <td>
+                    <input type="text" id="carro" name="carro" class="input-pdr" style="width: 173px" required="required" />
+                </td>
+                <td>Nome Cliente</td>
+                <td>
+                    <input type="text" id="nomeCliente" name="nomeCliente" class="input-pdr" style="width: 220px" />
+                </td>
+
+
+            </tr>
+
+
+            <tr>
+                <td>Data Hora Entrada</td>
+                <td colspan="1">
+                    <input type="text" id="dataHoraEntrada" name="dataHoraEntrada" class="input-pdr datetimepicker" style="width: 173px" required="required" />
+                </td>
+                <td>Serviço:</td>
+                <td style="position: relative;">
+                    <select name="servico" id="servico" style="width: 220px">
+                        <option>-</option>
+                        <option name="servico" value="Estacionamento">Estacionamento</option>
+                        <option name="servico" value="Lavagem">Lavagem</option>
+                        <option name="servico" value="Outros">Outros</option>
+                    </select>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>Fechado:</td>
+                <td width="166px">
+                    @Html.EditorFor(model => model.Fechado)
+                    @Html.ValidationMessageFor(model => model.Fechado, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <input type="submit" value="Salvar" id="btnSalvar" class="btn btnGreen" style="width: 85px; height: 34px; margin-left: 130px;" />
+                    <a href='@Url.Action("/", "Entrada")'>
+                        <input type="button" class="btn btnWhite dropdown-toggle" value="Cancelar" style="width: 85px; height: 34px;" />
+                    </a>
+                </td>
+            </tr>
+
+
+        </table>
+    </form>
+
+
+</div>
+<div id="popUpEmpresas" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" style="width: 600px;">
+            <div class="modal-header" style="border-bottom: 1px solid #ffffff;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div id="listEmpresas">
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+     $(function ($) {
+         $("#placa").mask("aaa-9999");
+         
+
+     });
+
+</script>
+<script>
+     $("#btnBuscarPorNomeEmpresa").click(function () {
+         CarregarEmpresaNomeEmpresa();
+     });
+
+     function CarregarEmpresaNomeEmpresa() {
+         event.preventDefault();
+         var item = $("#placa").val();
+
+
+         $.ajax({
+             url: "/api/ClientesApi/GetByNomeMensalista?placa=" + item,
+             type: "GET",
+             dataType: "JSON",
+             success: function (arr) {
+                 var table = "";
+                 table += '<table class="table table-hover">';
+
+                 table += '<tr class="active">';
+                 table += '<td style="text-align: center;">Nome Cliente</td>';
+                 table += '<td style="text-align: center;">Carro</td>';
+                 table += '<td style="text-align: center;">Selecione</td>';
+                 table += '</tr>';
+
+                 jQuery.each(arr, function (index, valor) {
+                     //$("#fone").val(valor._telefone);
+                     //$("#nomeRepresentanteLegal").val(valor._idPessoaRepresentante._nome);
+                     //$("#campocnpj").val(valor._cNPJ);
+                     //console.log(valor);
+
+
+                     table += '<tr>';
+                     table += '<td style="text-align: center;">' + valor._nome + '</td>';
+                     table += '<td style="text-align: center;">' + valor._carro + '</td>';
+                     table += '<td style="text-align: center; cursor:pointer;"><a onclick="buscarCnpj(\'' + valor._placa + '\')">Selecionar</a></td>';
+                     table += '</tr>';
+
+
+                 });
+                 table += "</table>";
+
+                 $("#listEmpresas").empty().append(table);
+
+                 $('#popUpEmpresas').modal('show');
+
+                 //if (valor._idEmpresa > 0);
+
+                 //else
+                 //    jAlert('Não existe empresas', 'Info');
+             },
+             error: function (valor) {
+                 $("#nomeRepresentanteLegal").val("");
+                 $("#campocnpj").val("");
+                 $("#fone").val("");
+             }
+
+
+         });
+
+
+     }
+
+     $("#btnBuscarPorCnpj").click(function () {
+         CarregarEmpresaCnpj();
+     });
+
+     function buscarCnpj(nome) {
+         $("#nomeCliente").val(nome);
+         CarregarEmpresaCnpj();
+         bloquearCampos();
+
+         console.log(nome);
+     }
+
+     function CarregarEmpresaCnpj() {
+         var item = $("#nomeCliente").val();
+
+
+         $.ajax({
+             url: "/api/ClientesApi/GetByNomeCliente?nomeCliente=" + item,
+             type: "GET",
+             dataType: "JSON",
+             success: function (valor) {
+
+                 $("#nomeEmpresa").val(valor._nomeEmpresarial);
+                 //$("#fone").val(valor._telefone);
+                 $("#endereco").val(valor._idEnderecoCnpj._rua);
+                 $("#cnaeSecundario").val(valor._empresasnatjuridica._codigoNatureza);
+                 //$("#nomeRepresentanteLegal").val(valor._idPessoaRepresentante._nome);
+                 $("#idEmpresa").val(valor._idEmpresa);
+                 console.log(valor._nomeEmpresarial);
+                 console.log(valor);
+                 if (valor._idEmpresa > 0)
+                     bloquearCampos();
+                 else
+                     jAlert('CNPJ não cadastrado', 'Info');
+             },
+             error: function (valor) {
+                 $("#nomeEmpresa").val("");
+                 $("#fone").val("");
+                 $("#nomeRepresentanteLegal").val("");
+                 $("#endereco").val(valor._idEnderecoCnpj._rua);
+             }
+         });
+
+
+     }
+
+     function bloquearCampos(parameters) {
+         $("#popUpEmpresas").modal("hide");
+         $("#popUpRepresentante").modal("hide");
+         $("#popUpCnpj").modal("hide");
+         $("#nomeEmpresa").attr("disabled", false);
+         $("#campocnpj").attr("disabled", false);
+         $("#limparCampos1").removeClass("hide");
+     }
+
+     function limparCampos() {
+
+         $("#limparCampos1").addClass("hide");
+         document.getElementById('nomeEmpresa').value = "";
+         document.getElementById('nomeEmpresa').disabled = false;
+         document.getElementById('campocnpj').value = "";
+         document.getElementById('campocnpj').disabled = false;
+         document.getElementById('endereco').value = "";
+         document.getElementById('endereco').disabled = false;
+         document.getElementById('cnaeSecundario').value = "";
+         document.getElementById('cnaeSecundario').disabled = false;
+     }
+
+
+
+
+</script>
+
+

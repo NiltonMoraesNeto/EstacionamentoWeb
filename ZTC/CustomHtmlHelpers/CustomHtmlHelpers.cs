@@ -126,8 +126,62 @@ namespace ZTC.CustomHtmlHelpers
             sub.InnerHtml += li_sub.ToString(TagRenderMode.Normal);
             sub_menu.InnerHtml += sub.ToString(TagRenderMode.Normal);
             sidebar_menu.InnerHtml += sub_menu.ToString(TagRenderMode.Normal);
-            //FIM MENU **PROSPECÇÃO**
+            //FIM MENU **CADASTRO**
 
+
+            //INICIO MENU **SERVIÇOS**
+            sub_menu = new TagBuilder("li");
+            sub_menu.AddCssClass("sub-menu");
+
+            tagA = new TagBuilder("a");
+            tagA.Attributes.Add("href", "javascript:;");
+
+            tagI = new TagBuilder("i");
+            tagI.AddCssClass("icon_desktop");
+            tagA.InnerHtml += tagI.ToString(TagRenderMode.Normal);
+
+            span = new TagBuilder("span");
+            span.InnerHtml += "Serviços";
+            tagA.InnerHtml += span.ToString(TagRenderMode.Normal);
+
+            span = new TagBuilder("span");
+            span.AddCssClass("menu-arrow arrow_carrot-right");
+            tagA.InnerHtml += span.ToString(TagRenderMode.Normal);
+
+            sub_menu.InnerHtml += tagA.ToString(TagRenderMode.Normal);
+
+            sub = new TagBuilder("ul");
+            sub.AddCssClass("sub");
+
+            li_sub = new TagBuilder("li");
+            tagA_sub = new TagBuilder("a");
+
+            tagA_sub.Attributes.Add("href", "/Horista/Create/");
+            tagA_sub.InnerHtml += "Horista";
+            li_sub.InnerHtml += tagA_sub.ToString(TagRenderMode.Normal);
+
+            sub.InnerHtml += li_sub.ToString(TagRenderMode.Normal);
+
+            li_sub = new TagBuilder("li");
+            tagA_sub = new TagBuilder("a");
+
+            tagA_sub.Attributes.Add("href", "/Entrada/Index/");
+            tagA_sub.InnerHtml += "Entrada";
+            li_sub.InnerHtml += tagA_sub.ToString(TagRenderMode.Normal);
+
+            sub.InnerHtml += li_sub.ToString(TagRenderMode.Normal);
+
+            li_sub = new TagBuilder("li");
+            tagA_sub = new TagBuilder("a");
+
+            tagA_sub.Attributes.Add("href", "/Saida/Index/");
+            tagA_sub.InnerHtml += "Saída";
+            li_sub.InnerHtml += tagA_sub.ToString(TagRenderMode.Normal);
+
+            sub.InnerHtml += li_sub.ToString(TagRenderMode.Normal);
+            sub_menu.InnerHtml += sub.ToString(TagRenderMode.Normal);
+            sidebar_menu.InnerHtml += sub_menu.ToString(TagRenderMode.Normal);
+            //FIM MENU **SERVIÇOS**
 
             sidebar.InnerHtml += sidebar_menu.ToString(TagRenderMode.Normal);
             aside.InnerHtml += sidebar.ToString(TagRenderMode.Normal);
