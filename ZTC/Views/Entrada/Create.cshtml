@@ -141,11 +141,12 @@
                  table += '<tr class="active">';
                  table += '<td style="text-align: center;">Nome Cliente</td>';
                  table += '<td style="text-align: center;">Carro</td>';
+                 table += '<td style="text-align: center;">Placa</td>';
                  table += '<td style="text-align: center;">Selecione</td>';
                  table += '</tr>';
 
                  jQuery.each(arr, function (index, valor) {
-                     //$("#fone").val(valor._telefone);
+                     //$("#placa").val(valor._placa);
                      //$("#nomeRepresentanteLegal").val(valor._idPessoaRepresentante._nome);
                      //$("#campocnpj").val(valor._cNPJ);
                      //console.log(valor);
@@ -154,7 +155,8 @@
                      table += '<tr>';
                      table += '<td style="text-align: center;">' + valor._nome + '</td>';
                      table += '<td style="text-align: center;">' + valor._carro + '</td>';
-                     table += '<td style="text-align: center; cursor:pointer;"><a onclick="buscarCnpj(\'' + valor._placa + '\')">Selecionar</a></td>';
+                     table += '<td style="text-align: center;">' + valor._placa + '</td>';
+                     table += '<td style="text-align: center; cursor:pointer;"><a onclick="buscarCnpj(\'' + valor._nome + '\')">Selecionar</a></td>';
                      table += '</tr>';
 
 
@@ -204,24 +206,19 @@
              dataType: "JSON",
              success: function (valor) {
 
-                 $("#nomeEmpresa").val(valor._nomeEmpresarial);
-                 //$("#fone").val(valor._telefone);
-                 $("#endereco").val(valor._idEnderecoCnpj._rua);
-                 $("#cnaeSecundario").val(valor._empresasnatjuridica._codigoNatureza);
-                 //$("#nomeRepresentanteLegal").val(valor._idPessoaRepresentante._nome);
-                 $("#idEmpresa").val(valor._idEmpresa);
-                 console.log(valor._nomeEmpresarial);
+                 $("#placa").val(valor._placa);
+                 $("#carro").val(valor._carro);
+
+                 console.log(valor._nome);
                  console.log(valor);
-                 if (valor._idEmpresa > 0)
+                 if (valor._idMensalista > 0)
                      bloquearCampos();
                  else
-                     jAlert('CNPJ não cadastrado', 'Info');
+                     jAlert('PLACA não cadastrada', 'Info');
              },
              error: function (valor) {
-                 $("#nomeEmpresa").val("");
-                 $("#fone").val("");
-                 $("#nomeRepresentanteLegal").val("");
-                 $("#endereco").val(valor._idEnderecoCnpj._rua);
+                 $("#placa").val("");
+                 $("#nomeCliente").val("");
              }
          });
 
@@ -232,22 +229,21 @@
          $("#popUpEmpresas").modal("hide");
          $("#popUpRepresentante").modal("hide");
          $("#popUpCnpj").modal("hide");
-         $("#nomeEmpresa").attr("disabled", false);
-         $("#campocnpj").attr("disabled", false);
+         $("#nomeCliente").attr("disabled", false);
+         $("#carro").attr("disabled", false);
+         $("#placa").attr("disabled", false);
          $("#limparCampos1").removeClass("hide");
      }
 
      function limparCampos() {
 
          $("#limparCampos1").addClass("hide");
-         document.getElementById('nomeEmpresa').value = "";
-         document.getElementById('nomeEmpresa').disabled = false;
-         document.getElementById('campocnpj').value = "";
-         document.getElementById('campocnpj').disabled = false;
-         document.getElementById('endereco').value = "";
-         document.getElementById('endereco').disabled = false;
-         document.getElementById('cnaeSecundario').value = "";
-         document.getElementById('cnaeSecundario').disabled = false;
+         document.getElementById('nomeCliente').value = "";
+         document.getElementById('nomeCliente').disabled = false;
+         document.getElementById('carro').value = "";
+         document.getElementById('carro').disabled = false;
+         document.getElementById('placa').value = "";
+         document.getElementById('placa').disabled = false;
      }
 
 
