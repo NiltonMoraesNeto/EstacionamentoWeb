@@ -1,4 +1,4 @@
-﻿@model ZTC.Model.Entrada
+﻿@model ZTC.Model.ServicoMensalista
 
 @{
     ViewBag.Title = "Criar Novo Mensalista";
@@ -24,17 +24,17 @@
 <h2>Criar Nova Entrada</h2>
 <div class="content">
 
-    <form action="@Url.Action("Create", "Entrada")" method="POST" name="form1">
+    <form action="@Url.Action("Create", "ServicoMensalista")" method="POST" name="form1">
         <input type="hidden" name="idMensalista" id="idMensalista" />
-        <input type="hidden" name="idAvulso" id="idAvulso" />
-        <table class="tablespc" style="margin-bottom: 10px">
+        
+        <table class="CadPro">
 
             <tr>
                 <td width="130px">
                     <span>Placa</span>
                 </td>
                 <td colspan="5">
-                    <input type="text" name="placa" id="placa" class="input-pdr" style="width: 560px;" required="required" />
+                    <input type="text" name="placa" id="placa" class="input-pdr" style="width: 173px;" required="required" />
                     <button id="btnBuscarPorNomeEmpresa" class="btnPesquisar tooltipicon" data-title="Pesquisar"><span class="glyphicon glyphicon-search"></span></button>
                     <button type="button" name="limparCampos1" id="limparCampos1" value="Limpar" onclick="limparCampos()" title="Limpar Dados Empresa" alt="Limpar Dados Empresa" class="btn btn-sm btn-row glyphicon glyphicon-remove hide"></button>
                 </td>
@@ -51,12 +51,14 @@
 
 
             </tr>
+            <br />
 
 
             <tr>
                 <td>Data Hora Entrada</td>
                 <td colspan="1">
-                    <input type="text" id="dataHoraEntrada" name="dataHoraEntrada" class="input-pdr datetimepicker" style="width: 173px" required="required" />
+                    <input name="dataEntrada" id="dataEntrada" type="text" class="datetimepicker input-pdr" style="width: 170px" value="@DateTime.Now.ToShortDateString()" />
+                    <input class="input-pdr timepicker text-box single-line" id="dataHora" maxlength="5" name="dataHora" style="width:60px" type="text" value="@DateTime.Now.ToShortTimeString()">
                 </td>
                 <td>Serviço:</td>
                 <td style="position: relative;">
@@ -81,7 +83,7 @@
             <tr>
                 <td colspan="6">
                     <input type="submit" value="Salvar" id="btnSalvar" class="btn btnGreen" style="width: 85px; height: 34px; margin-left: 130px;" />
-                    <a href='@Url.Action("/", "Entrada")'>
+                    <a href='@Url.Action("/", "ServicoMensalista")'>
                         <input type="button" class="btn btnWhite dropdown-toggle" value="Cancelar" style="width: 85px; height: 34px;" />
                     </a>
                 </td>

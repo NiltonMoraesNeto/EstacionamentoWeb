@@ -10,13 +10,13 @@ using InterfaceConexao.DAL;
 
 namespace ZTC.Bll
 {
-    public class EntradaBll : BLLBase<Entrada>
+    public class ServicoMensalistaBll : BLLBase<ServicoMensalista>
     {
-        public void Save(Entrada o)
+        public void Save(ServicoMensalista o)
         {
             using (var dal = DatabaseConnection.GetDataAccessLayer())
             {
-                var dao = new EntradaDal(dal);
+                var dao = new ServicoMensalistaDal(dal);
 
                 try
                 {
@@ -36,11 +36,11 @@ namespace ZTC.Bll
             }
         }
 
-        public void Delete(Entrada o)
+        public void Delete(ServicoMensalista o)
         {
             using (var dal = DatabaseConnection.GetDataAccessLayer())
             {
-                var dao = new EntradaDal(dal);
+                var dao = new ServicoMensalistaDal(dal);
 
                 try
                 {
@@ -53,18 +53,18 @@ namespace ZTC.Bll
             }
         }
 
-        public Entrada GetObject(int idEntrada)
+        public ServicoMensalista GetObject(int idServicoMensalista)
         {
             using (var dal = DatabaseConnection.GetDataAccessLayer())
             {
-                var dao = new EntradaDal(dal);
+                var dao = new ServicoMensalistaDal(dal);
 
                 try
                 {
                     dal.OpenConnection();
-                    var entrada = dao.GetObject(idEntrada);
-                    CompleteRelatedObjects(entrada, dal);
-                    return entrada;
+                    var servicoMensalista = dao.GetObject(idServicoMensalista);
+                    CompleteRelatedObjects(servicoMensalista, dal);
+                    return servicoMensalista;
                 }
                 catch (Exception ex)
                 {
@@ -77,11 +77,11 @@ namespace ZTC.Bll
             }
         }
 
-        public List<Entrada> GetList()
+        public List<ServicoMensalista> GetList()
         {
             using (var dal = DatabaseConnection.GetDataAccessLayer())
             {
-                var dao = new EntradaDal(dal);
+                var dao = new ServicoMensalistaDal(dal);
 
                 try
                 {
@@ -95,16 +95,16 @@ namespace ZTC.Bll
         }
 
 
-        public List<Entrada> GetList(string conditions = null, bool completeRelatedObjects = false)
+        public List<ServicoMensalista> GetList(string conditions = null, bool completeRelatedObjects = false)
         {
             using (var dal = DatabaseConnection.GetDataAccessLayer())
             {
-                var dao = new EntradaDal(dal);
+                var dao = new ServicoMensalistaDal(dal);
 
                 try
                 {
                     var list = dao.GetList(conditions);
-                    foreach (Entrada p in list)
+                    foreach (ServicoMensalista p in list)
                     {
                         CompleteRelatedObjects(p, dal);
                     }
@@ -118,11 +118,11 @@ namespace ZTC.Bll
         }
 
 
-        public override void CompleteObject(Entrada o, DataAccessLayer dal, bool completeRelatedObjects = true)
+        public override void CompleteObject(ServicoMensalista o, DataAccessLayer dal, bool completeRelatedObjects = true)
         {
-            if (o == null) throw new ArgumentNullException("entrada");
+            if (o == null) throw new ArgumentNullException("servicomensalista");
 
-            var dao = new EntradaDal(dal);
+            var dao = new ServicoMensalistaDal(dal);
             var connOpened = dal.ConnectionOpened;
 
             try
@@ -141,7 +141,7 @@ namespace ZTC.Bll
             }
         }
 
-        protected override void CompleteRelatedObjects(Entrada o, DataAccessLayer dal, bool completeRelatedObjects = true)
+        protected override void CompleteRelatedObjects(ServicoMensalista o, DataAccessLayer dal, bool completeRelatedObjects = true)
         {
             if (o == null)
                 return;

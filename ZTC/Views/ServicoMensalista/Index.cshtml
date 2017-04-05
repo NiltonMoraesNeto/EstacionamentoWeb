@@ -1,4 +1,4 @@
-﻿@model List<ZTC.Model.Entrada>
+﻿@model List<ZTC.Model.ServicoMensalista>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -109,13 +109,13 @@
 </style>
 
 
-<h2>Entrada</h2>
+<h2>Serviço Mensalista</h2>
 
 
 
 
 <div class="content" style="padding: 10px; width: 1120px">
-    <input type="button" name="button" class="btn btnGreen" value="Adicionar Entrada" onclick='javascript: location.href = "@Url.Action("Create", "Entrada")"' />
+    <input type="button" name="button" class="btn btnGreen" value="Adicionar Serviço Mensalista" onclick='javascript: location.href = "@Url.Action("Create", "ServicoMensalista")"' />
     <br /><br />
     <table class="table table-striped">
         <tr>
@@ -129,10 +129,13 @@
                 Carro
             </th>
             <th style="text-align:center">
-                Servico
+                Serviço
             </th>
             <th style="text-align:center">
-                Data Entrada
+                Data e Hora Entrada
+            </th>
+            <th style="text-align:center">
+                Data e Hora Saída
             </th>
             <th style="text-align:center">
                 Fechado
@@ -162,7 +165,7 @@
                     @Html.DisplayFor(modelItem => item.Fechado)
                 </td>
                 <td style="text-align:center">
-                        <a href="@Url.Action("Edit", "Entrada", new { id = item.IdEntrada })" class="btn btn-xs btn-pen tooltipicon" data-title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="@Url.Action("Edit", "ServicoMensalista", new { id = item.IdServicoMensalista })" class="btn btn-xs btn-pen tooltipicon" data-title="Editar"><span class="glyphicon glyphicon-pencil"></span></a>
             </tr>
         }
     </table>

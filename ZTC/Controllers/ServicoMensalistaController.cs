@@ -11,14 +11,14 @@ using ZTC.Models.ENUMS;
 using System.Net.Mail;
 namespace ZTC.Controllers
 {
-    public class EntradaController : BaseController
+    public class ServicoMensalistaController : BaseController
     {
         // GET: Entrada
         [AccessDeniedAuthorize]
         public ActionResult Index()
         {
-            var entrada = new List<Entrada>();
-            var bll = new EntradaBll();
+            var entrada = new List<ServicoMensalista>();
+            var bll = new ServicoMensalistaBll();
 
             string sql = "";
 
@@ -41,16 +41,25 @@ namespace ZTC.Controllers
 
         // POST: Entrada/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ServicoMensalista servicoMensalista, FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                var bll = new ServicoMensalistaBll();
 
+
+                servicoMensalista.Nome = collection["nomeCliente"];
+                servicoMensalista.DataHoraEntrada = collection["dataEntrada"] != "" ? DateTime.Parse(collection["dataEntrada"]) + collection["dataHora"] != "" ? DateTime.Parse(collection["dataHora"]) : (DateTime?)null : (DateTime?)null;
+
+                bll.Save(servicoMensalista);
+
+
+                Success("Sucesso", "Salvo com sucesso!", true);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
+                Danger("Erro", string.Format("Erro: " + ex.Message), true);
                 return View();
             }
         }

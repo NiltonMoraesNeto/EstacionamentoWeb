@@ -683,7 +683,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="BLL\EntradaBll.cs" />
+    <Compile Include="BLL\ServicoMensalistaBll.cs" />
     <Compile Include="BLL\BLLBase.cs" />
     <Compile Include="BLL\AvulsoBll.cs" />
     <Compile Include="BLL\MensalistaBll.cs" />
@@ -695,12 +695,12 @@
     <Compile Include="Controllers\AvulsoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClientesApiController.cs" />
-    <Compile Include="Controllers\EntradaController.cs" />
+    <Compile Include="Controllers\ServicoMensalistaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MensalistaController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="CustomHtmlHelpers\CustomHtmlHelpers.cs" />
-    <Compile Include="DAL\EntradaDal.cs" />
+    <Compile Include="DAL\ServicoMensalistaDal.cs" />
     <Compile Include="DAL\AvulsoDal.cs" />
     <Compile Include="DAL\MensalistaDal.cs" />
     <Compile Include="DAL\DadosDal.cs" />
@@ -717,7 +717,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Alert.cs" />
-    <Compile Include="Models\Entrada.cs" />
+    <Compile Include="Models\ServicoMensalista.cs" />
     <Compile Include="Models\ENUMS\Status.cs" />
     <Compile Include="Models\Extensions\Ext.cs" />
     <Compile Include="Models\Licencas.cs" />
@@ -744,8 +744,8 @@
     <Content Include="Views\Avulso\Index.cshtml" />
     <Content Include="Views\Avulso\Create.cshtml" />
     <Content Include="Views\Avulso\Edit.cshtml" />
-    <Content Include="Views\Entrada\Index.cshtml" />
-    <Content Include="Views\Entrada\Create.cshtml" />
+    <Content Include="Views\ServicoMensalista\Index.cshtml" />
+    <Content Include="Views\ServicoMensalista\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

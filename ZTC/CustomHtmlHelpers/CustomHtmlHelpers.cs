@@ -156,8 +156,8 @@ namespace ZTC.CustomHtmlHelpers
             li_sub = new TagBuilder("li");
             tagA_sub = new TagBuilder("a");
 
-            tagA_sub.Attributes.Add("href", "/Horista/Create/");
-            tagA_sub.InnerHtml += "Horista";
+            tagA_sub.Attributes.Add("href", "/ServicoAvulso/Index/");
+            tagA_sub.InnerHtml += "Avulso";
             li_sub.InnerHtml += tagA_sub.ToString(TagRenderMode.Normal);
 
             sub.InnerHtml += li_sub.ToString(TagRenderMode.Normal);
@@ -165,17 +165,15 @@ namespace ZTC.CustomHtmlHelpers
             li_sub = new TagBuilder("li");
             tagA_sub = new TagBuilder("a");
 
-            tagA_sub.Attributes.Add("href", "/Entrada/Index/");
-            tagA_sub.InnerHtml += "Entrada";
+            tagA_sub.Attributes.Add("href", "/ServicoMensalista/Index/");
+            tagA_sub.InnerHtml += "Mensalista";
             li_sub.InnerHtml += tagA_sub.ToString(TagRenderMode.Normal);
 
             sub.InnerHtml += li_sub.ToString(TagRenderMode.Normal);
-
             li_sub = new TagBuilder("li");
             tagA_sub = new TagBuilder("a");
-
-            tagA_sub.Attributes.Add("href", "/Saida/Index/");
-            tagA_sub.InnerHtml += "Saída";
+            tagA_sub.Attributes.Add("href", "/EntradaAvulso/Index/");
+            tagA_sub.InnerHtml += "Entrada Avulso";
             li_sub.InnerHtml += tagA_sub.ToString(TagRenderMode.Normal);
 
             sub.InnerHtml += li_sub.ToString(TagRenderMode.Normal);
