@@ -16,8 +16,12 @@ namespace ZTC.Model
         private string _nome;
         private string _placa;
         private string _carro;
-        private string _servico;
-        private string _observacao;
+        private string _servico1;
+        private string _observacao1;
+        private string _servico2;
+        private string _observacao2;
+        private string _servico3;
+        private string _observacao3;
         private DateTime? _dataHoraEntrada;
         private DateTime? _dataHoraSaida;
         private decimal _valorServico;
@@ -53,15 +57,35 @@ namespace ZTC.Model
             set { _carro = value; }
         }
 
-        public string Servico
+        public string Servico1
         {
-            get { return _servico; }
-            set { _servico = value; }
+            get { return _servico1; }
+            set { _servico1 = value; }
         }
-        public string Observacao
+        public string Observacao1
         {
-            get { return _observacao; }
-            set { _observacao = value; }
+            get { return _observacao1; }
+            set { _observacao1 = value; }
+        }
+        public string Servico2
+        {
+            get { return _servico2; }
+            set { _servico2 = value; }
+        }
+        public string Observacao2
+        {
+            get { return _observacao2; }
+            set { _observacao2 = value; }
+        }
+        public string Servico3
+        {
+            get { return _servico3; }
+            set { _servico3 = value; }
+        }
+        public string Observacao3
+        {
+            get { return _observacao3; }
+            set { _observacao3 = value; }
         }
         public DateTime? DataHoraEntrada
         {

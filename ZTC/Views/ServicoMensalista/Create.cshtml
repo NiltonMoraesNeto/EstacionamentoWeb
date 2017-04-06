@@ -26,7 +26,7 @@
 
     <form action="@Url.Action("Create", "ServicoMensalista")" method="POST" name="form1">
         <input type="hidden" name="idMensalista" id="idMensalista" />
-        
+
         <table class="CadPro">
 
             <tr>
@@ -51,33 +51,115 @@
 
 
             </tr>
-            <br />
-
 
             <tr>
                 <td>Data Hora Entrada</td>
                 <td colspan="1">
-                    <input name="dataEntrada" id="dataEntrada" type="text" class="datetimepicker input-pdr" style="width: 170px" value="@DateTime.Now.ToShortDateString()" />
-                    <input class="input-pdr timepicker text-box single-line" id="dataHora" maxlength="5" name="dataHora" style="width:60px" type="text" value="@DateTime.Now.ToShortTimeString()">
+                    <input name="dataEntrada" id="dataEntrada" type="text" class="datetimepicker input-pdr" style="width: 110px" value="@DateTime.Now.ToShortDateString()" />
+                    <input class="input-pdr timepicker text-box single-line" id="horaEntrada" maxlength="5" name="horaEntrada" style="width:60px" type="text" value="@DateTime.Now.ToShortTimeString()">
                 </td>
-                <td>Serviço:</td>
+                <td>Data Hora Saída</td>
+                <td>
+                    <input name="dataSaida" id="dataSaida" type="text" class="datetimepicker input-pdr" style="width: 110px" value="@DateTime.Now.ToShortDateString()" />
+                    <input class="input-pdr timepicker text-box single-line" id="horaSaida" maxlength="5" name="horaSaida" style="width:60px" type="text" value="@DateTime.Now.ToShortTimeString()">
+                </td>
+
+
+            </tr>
+
+
+            <tr>
+                <td>Serviço 1:</td>
                 <td style="position: relative;">
-                    <select name="servico" id="servico" style="width: 220px">
+                    <select name="servico1" id="servico1" style="width: 170px">
                         <option>-</option>
-                        <option name="servico" value="Estacionamento">Estacionamento</option>
-                        <option name="servico" value="Lavagem">Lavagem</option>
-                        <option name="servico" value="Outros">Outros</option>
+                        <option name="servico1" value="Estacionamento">Estacionamento</option>
+                        <option name="servico1" value="Lavagem">Lavagem</option>
+                        <option name="servico1" value="Outros">Outros</option>
                     </select>
+                </td>
+                <td>Obs</td>
+                <td>
+                    <textarea type="text" id="obs1" name="obs1" class="input-pdr" style="width: 220px" cols="10" rows="2"></textarea>
                 </td>
 
             </tr>
 
             <tr>
+                <td>Serviço 2:</td>
+                <td style="position: relative;">
+                    <select name="servico2" id="servico" style="width: 170px">
+                        <option>-</option>
+                        <option name="servico2" value="Estacionamento">Estacionamento</option>
+                        <option name="servico2" value="Lavagem">Lavagem</option>
+                        <option name="servico2" value="Outros">Outros</option>
+                    </select>
+                </td>
+                <td>Obs</td>
+                <td>
+                    <textarea type="text" id="obs2" name="obs2" class="input-pdr" style="width: 220px" cols="10" rows="2"></textarea>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>Serviço 3:</td>
+                <td style="position: relative;">
+                    <select name="servico3" id="servico3" style="width: 170px">
+                        <option>-</option>
+                        <option name="servico3" value="Estacionamento">Estacionamento</option>
+                        <option name="servico3" value="Lavagem">Lavagem</option>
+                        <option name="servico3" value="Outros">Outros</option>
+                    </select>
+                </td>
+                <td>Obs</td>
+                <td>
+                    <textarea type="text" id="obs3" name="obs3" class="input-pdr" style="width: 220px" cols="10" rows="2"></textarea>
+                </td>
+
+            </tr>
+
+
+
+            <tr>
+                <td>Valor Serviço</td>
+                <td>
+                    <input type="text" id="valorServico" name="valorServico" class="input-pdr moeda" style="width: 173px" required="required" />
+                </td>
+                <td>Valor Hora</td>
+                <td>
+                    <input type="text" id="valorHora" name="valorHora" class="input-pdr moeda" style="width: 220px" />
+                </td>
+
+
+            </tr>
+
+            <tr>
+                <td>Total de Horas</td>
+                <td>
+                    <input type="text" id="totalHoras" name="totalHoras" class="input-pdr timepicker" style="width: 173px" required="required" />
+                </td>
+                <td>Valor Total</td>
+                <td>
+                    <input type="text" id="valorTotal" name="valorTotal" class="input-pdr moeda" style="width: 220px" />
+                </td>
+
+
+            </tr>
+
+
+            <tr>
+                <td>Forma de Pagamento</td>
+                <td>
+                    <input type="text" id="formaPagamento" name="formaPagamento" class="input-pdr" style="width: 173px" required="required" />
+                </td>
                 <td>Fechado:</td>
                 <td width="166px">
                     @Html.EditorFor(model => model.Fechado)
                     @Html.ValidationMessageFor(model => model.Fechado, "", new { @class = "text-danger" })
                 </td>
+
+
             </tr>
 
             <tr>
@@ -112,141 +194,147 @@
     </div>
 </div>
 
+<script>
+
+
+
+
+</script>
 
 <script>
 
-     $(function ($) {
-         $("#placa").mask("aaa-9999");
-         
+    $(function ($) {
+        $("#placa").mask("aaa-9999");
 
-     });
+
+    });
 
 </script>
 <script>
-     $("#btnBuscarPorNomeEmpresa").click(function () {
-         CarregarEmpresaNomeEmpresa();
-     });
+    $("#btnBuscarPorNomeEmpresa").click(function () {
+        CarregarEmpresaNomeEmpresa();
+    });
 
-     function CarregarEmpresaNomeEmpresa() {
-         event.preventDefault();
-         var item = $("#placa").val();
-
-
-         $.ajax({
-             url: "/api/ClientesApi/GetByNomeMensalista?placa=" + item,
-             type: "GET",
-             dataType: "JSON",
-             success: function (arr) {
-                 var table = "";
-                 table += '<table class="table table-hover">';
-
-                 table += '<tr class="active">';
-                 table += '<td style="text-align: center;">Nome Cliente</td>';
-                 table += '<td style="text-align: center;">Carro</td>';
-                 table += '<td style="text-align: center;">Placa</td>';
-                 table += '<td style="text-align: center;">Selecione</td>';
-                 table += '</tr>';
-
-                 jQuery.each(arr, function (index, valor) {
-                     //$("#placa").val(valor._placa);
-                     //$("#nomeRepresentanteLegal").val(valor._idPessoaRepresentante._nome);
-                     //$("#campocnpj").val(valor._cNPJ);
-                     //console.log(valor);
+    function CarregarEmpresaNomeEmpresa() {
+        event.preventDefault();
+        var item = $("#placa").val();
 
 
-                     table += '<tr>';
-                     table += '<td style="text-align: center;">' + valor._nome + '</td>';
-                     table += '<td style="text-align: center;">' + valor._carro + '</td>';
-                     table += '<td style="text-align: center;">' + valor._placa + '</td>';
-                     table += '<td style="text-align: center; cursor:pointer;"><a onclick="buscarCnpj(\'' + valor._nome + '\')">Selecionar</a></td>';
-                     table += '</tr>';
+        $.ajax({
+            url: "/api/ClientesApi/GetByNomeMensalista?placa=" + item,
+            type: "GET",
+            dataType: "JSON",
+            success: function (arr) {
+                var table = "";
+                table += '<table class="table table-hover">';
+
+                table += '<tr class="active">';
+                table += '<td style="text-align: center;">Nome Cliente</td>';
+                table += '<td style="text-align: center;">Carro</td>';
+                table += '<td style="text-align: center;">Placa</td>';
+                table += '<td style="text-align: center;">Selecione</td>';
+                table += '</tr>';
+
+                jQuery.each(arr, function (index, valor) {
+                    //$("#placa").val(valor._placa);
+                    //$("#nomeRepresentanteLegal").val(valor._idPessoaRepresentante._nome);
+                    //$("#campocnpj").val(valor._cNPJ);
+                    //console.log(valor);
 
 
-                 });
-                 table += "</table>";
-
-                 $("#listEmpresas").empty().append(table);
-
-                 $('#popUpEmpresas').modal('show');
-
-                 //if (valor._idEmpresa > 0);
-
-                 //else
-                 //    jAlert('Não existe empresas', 'Info');
-             },
-             error: function (valor) {
-                 $("#nomeRepresentanteLegal").val("");
-                 $("#campocnpj").val("");
-                 $("#fone").val("");
-             }
+                    table += '<tr>';
+                    table += '<td style="text-align: center;">' + valor._nome + '</td>';
+                    table += '<td style="text-align: center;">' + valor._carro + '</td>';
+                    table += '<td style="text-align: center;">' + valor._placa + '</td>';
+                    table += '<td style="text-align: center; cursor:pointer;"><a onclick="buscarCnpj(\'' + valor._nome + '\')">Selecionar</a></td>';
+                    table += '</tr>';
 
 
-         });
+                });
+                table += "</table>";
+
+                $("#listEmpresas").empty().append(table);
+
+                $('#popUpEmpresas').modal('show');
+
+                //if (valor._idEmpresa > 0);
+
+                //else
+                //    jAlert('Não existe empresas', 'Info');
+            },
+            error: function (valor) {
+                $("#nomeRepresentanteLegal").val("");
+                $("#campocnpj").val("");
+                $("#fone").val("");
+            }
 
 
-     }
-
-     $("#btnBuscarPorCnpj").click(function () {
-         CarregarEmpresaCnpj();
-     });
-
-     function buscarCnpj(nome) {
-         $("#nomeCliente").val(nome);
-         CarregarEmpresaCnpj();
-         bloquearCampos();
-
-         console.log(nome);
-     }
-
-     function CarregarEmpresaCnpj() {
-         var item = $("#nomeCliente").val();
+        });
 
 
-         $.ajax({
-             url: "/api/ClientesApi/GetByNomeCliente?nomeCliente=" + item,
-             type: "GET",
-             dataType: "JSON",
-             success: function (valor) {
+    }
 
-                 $("#placa").val(valor._placa);
-                 $("#carro").val(valor._carro);
+    $("#btnBuscarPorCnpj").click(function () {
+        CarregarEmpresaCnpj();
+    });
 
-                 console.log(valor._nome);
-                 console.log(valor);
-                 if (valor._idMensalista > 0)
-                     bloquearCampos();
-                 else
-                     jAlert('PLACA não cadastrada', 'Info');
-             },
-             error: function (valor) {
-                 $("#placa").val("");
-                 $("#nomeCliente").val("");
-             }
-         });
+    function buscarCnpj(nome) {
+        $("#nomeCliente").val(nome);
+        CarregarEmpresaCnpj();
+        bloquearCampos();
+
+        console.log(nome);
+    }
+
+    function CarregarEmpresaCnpj() {
+        var item = $("#nomeCliente").val();
 
 
-     }
+        $.ajax({
+            url: "/api/ClientesApi/GetByNomeCliente?nomeCliente=" + item,
+            type: "GET",
+            dataType: "JSON",
+            success: function (valor) {
 
-     function bloquearCampos(parameters) {
-         $("#popUpEmpresas").modal("hide");
-         $("#popUpRepresentante").modal("hide");
-         $("#popUpCnpj").modal("hide");
-         $("#nomeCliente").attr("disabled", false);
-         $("#carro").attr("disabled", false);
-         $("#placa").attr("disabled", false);
-         $("#limparCampos1").removeClass("hide");
-     }
+                $("#placa").val(valor._placa);
+                $("#carro").val(valor._carro);
 
-     function limparCampos() {
+                console.log(valor._nome);
+                console.log(valor);
+                if (valor._idMensalista > 0)
+                    bloquearCampos();
+                else
+                    jAlert('PLACA não cadastrada', 'Info');
+            },
+            error: function (valor) {
+                $("#placa").val("");
+                $("#nomeCliente").val("");
+            }
+        });
 
-         $("#limparCampos1").addClass("hide");
-         document.getElementById('nomeCliente').value = "";
-         document.getElementById('nomeCliente').disabled = false;
-         document.getElementById('carro').value = "";
-         document.getElementById('carro').disabled = false;
-         document.getElementById('placa').value = "";
-         document.getElementById('placa').disabled = false;
-     }
+
+    }
+
+    function bloquearCampos(parameters) {
+        $("#popUpEmpresas").modal("hide");
+        $("#popUpRepresentante").modal("hide");
+        $("#popUpCnpj").modal("hide");
+        $("#nomeCliente").attr("disabled", false);
+        $("#carro").attr("disabled", false);
+        $("#placa").attr("disabled", false);
+        $("#limparCampos1").removeClass("hide");
+    }
+
+    function limparCampos() {
+
+        $("#limparCampos1").addClass("hide");
+        document.getElementById('nomeCliente').value = "";
+        document.getElementById('nomeCliente').disabled = false;
+        document.getElementById('carro').value = "";
+        document.getElementById('carro').disabled = false;
+        document.getElementById('placa').value = "";
+        document.getElementById('placa').disabled = false;
+    }
 
 
 

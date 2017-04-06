@@ -30,8 +30,12 @@ namespace ZTC.Dal
             parms.Add(new MySqlParameter("@Nome", !String.IsNullOrEmpty(o.Nome) ? o.Nome : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@Placa", !String.IsNullOrEmpty(o.Placa) ? o.Placa : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@Carro", !String.IsNullOrEmpty(o.Carro) ? o.Carro : (object)DBNull.Value));
-            parms.Add(new MySqlParameter("@Servico", !String.IsNullOrEmpty(o.Servico) ? o.Servico : (object)DBNull.Value));
-            parms.Add(new MySqlParameter("@Observacao", !String.IsNullOrEmpty(o.Observacao) ? o.Observacao : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Servico1", !String.IsNullOrEmpty(o.Servico1) ? o.Servico1 : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Observacao1", !String.IsNullOrEmpty(o.Observacao1) ? o.Observacao1 : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Servico2", !String.IsNullOrEmpty(o.Servico2) ? o.Servico2 : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Observacao2", !String.IsNullOrEmpty(o.Observacao2) ? o.Observacao2 : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Servico3", !String.IsNullOrEmpty(o.Servico3) ? o.Servico3 : (object)DBNull.Value));
+            parms.Add(new MySqlParameter("@Observacao3", !String.IsNullOrEmpty(o.Observacao3) ? o.Observacao3 : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@DataHoraEntrada", o.DataHoraEntrada.HasValue ? o.DataHoraEntrada : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@DataHoraSaida", o.DataHoraSaida.HasValue ? o.DataHoraSaida : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@ValorServico", o.ValorServico));
@@ -54,9 +58,11 @@ namespace ZTC.Dal
         }
         public void Insert(ServicoMensalista o)
         {
-            String sql = "INSERT INTO ServicoMensalista (Nome, Placa, Carro, Servico, Observacao, DataHoraEntrada, DataHoraSaida, " +
+            String sql = "INSERT INTO ServicoMensalista (Nome, Placa, Carro, Servico1, Observacao1, Servico2, Observacao2, " +
+                         "Servico3, Observacao3, DataHoraEntrada, DataHoraSaida, " +
                          "ValorServico, ValorHora, TotalHoras, ValorTotal, FormaPagamento, Fechado)" +
-                         " VALUES (@Nome, @Placa, @Carro, @Servico, @Observacao, @DataHoraEntrada, @DataHoraSaida, " +
+                         " VALUES (@Nome, @Placa, @Carro, @Servico1, @Observacao1, @Servico2, @Observacao2, " +
+                         "@Servico3, @Observacao3, @DataHoraEntrada, @DataHoraSaida, " +
                          "@ValorServico, @ValorHora, @TotalHoras, @ValorTotal, @FormaPagamento, @Fechado);" +
                          "Select LAST_INSERT_ID();";
 
@@ -68,7 +74,8 @@ namespace ZTC.Dal
         public void Update(ServicoMensalista o)
         {
             String sql = "UPDATE ServicoMensalista SET Nome = @Nome, Placa = @Placa, " +
-                         "Carro = @Carro, Servico = @Servico, Observacao = @Observacao, " +
+                         "Carro = @Carro, Servico1 = @Servico1, Observacao1 = @Observacao1, " +
+                         "Servico2 = @Servico2, Observacao2 = @Observacao2, Servico3 = @Servico3, Observacao3 = @Observacao3," +
                          "DataHoraEntrada = @DataHoraEntrada, DataHoraSaida = @DataHoraSaida, ValorServico = @ValorServico, " +
                          "ValorHora = @ValorHora, TotalHoras = @TotalHoras, ValorTotal = @ValorTotal, " +
                          "FormaPagamento = @FormaPagamento, Fechado = @Fechado " +
@@ -95,10 +102,18 @@ namespace ZTC.Dal
                 o.Placa = Convert.ToString(dr["Placa"]);
             if (dr["Carro"] != DBNull.Value)
                 o.Carro = Convert.ToString(dr["Carro"]);
-            if (dr["Servico"] != DBNull.Value)
-                o.Servico = Convert.ToString(dr["Servico"]);
-            if (dr["Observacao"] != DBNull.Value)
-                o.Observacao = Convert.ToString(dr["Observacao"]);
+            if (dr["Servico1"] != DBNull.Value)
+                o.Servico1 = Convert.ToString(dr["Servico1"]);
+            if (dr["Observacao1"] != DBNull.Value)
+                o.Observacao1 = Convert.ToString(dr["Observacao1"]);
+            if (dr["Servico2"] != DBNull.Value)
+                o.Servico2 = Convert.ToString(dr["Servico2"]);
+            if (dr["Observacao2"] != DBNull.Value)
+                o.Observacao2 = Convert.ToString(dr["Observacao2"]);
+            if (dr["Servico3"] != DBNull.Value)
+                o.Servico3 = Convert.ToString(dr["Servico3"]);
+            if (dr["Observacao3"] != DBNull.Value)
+                o.Observacao3 = Convert.ToString(dr["Observacao3"]);
             if (dr["DataHoraEntrada"] != DBNull.Value)
                 o.DataHoraEntrada = Convert.ToDateTime(dr["DataHoraEntrada"]);
             if (dr["DataHoraSaida"] != DBNull.Value)
