@@ -746,6 +746,7 @@
     <Content Include="Views\Avulso\Edit.cshtml" />
     <Content Include="Views\ServicoMensalista\Index.cshtml" />
     <Content Include="Views\ServicoMensalista\Create.cshtml" />
+    <Content Include="Views\ServicoMensalista\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

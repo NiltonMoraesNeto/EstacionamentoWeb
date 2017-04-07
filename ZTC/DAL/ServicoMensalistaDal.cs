@@ -40,7 +40,7 @@ namespace ZTC.Dal
             parms.Add(new MySqlParameter("@DataHoraSaida", o.DataHoraSaida.HasValue ? o.DataHoraSaida : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@ValorServico", o.ValorServico));
             parms.Add(new MySqlParameter("@ValorHora", o.ValorHora));
-            parms.Add(new MySqlParameter("@TotalHoras", o.TotalHoras));
+            parms.Add(new MySqlParameter("@TotalHoras", !String.IsNullOrEmpty(o.TotalHoras) ? o.TotalHoras : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@ValorTotal", o.ValorTotal));
             parms.Add(new MySqlParameter("@FormaPagamento", !String.IsNullOrEmpty(o.FormaPagamento) ? o.FormaPagamento : (object)DBNull.Value));
             parms.Add(new MySqlParameter("@Fechado", o.Fechado));
@@ -123,7 +123,7 @@ namespace ZTC.Dal
             if (dr["ValorHora"] != DBNull.Value)
                 o.ValorHora = Convert.ToDecimal(dr["ValorHora"]);
             if (dr["TotalHoras"] != DBNull.Value)
-                o.TotalHoras = Convert.ToDecimal(dr["TotalHoras"]);
+                o.TotalHoras = Convert.ToString(dr["TotalHoras"]);
             if (dr["ValorTotal"] != DBNull.Value)
                 o.ValorTotal = Convert.ToDecimal(dr["ValorTotal"]);
             if (dr["FormaPagamento"] != DBNull.Value)

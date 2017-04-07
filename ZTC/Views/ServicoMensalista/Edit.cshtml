@@ -1,0 +1,213 @@
+﻿@model ZTC.Model.ServicoMensalista
+
+@{
+    ViewBag.Title = "Criar Novo Mensalista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #tableUsuario tr td {
+        padding: 5px 5px 5px 5px;
+    }
+
+    .drop-down {
+        height: 20px;
+    }
+
+    .error {
+        color: #a94442;
+    }
+</style>
+
+
+
+<h2>Editar Serviço Mensalista</h2>
+<div class="content">
+
+    @using (Html.BeginForm("Edit", "ServicoMensalista", FormMethod.Post, htmlAttributes: new { @id = "servicomensalista" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        //@Html.HiddenFor(model => model.IdServicoMensalista)
+        //@Html.HiddenFor(model => model.Persisted)
+        <input type="hidden" id="IdServicoMensalista" name="IdServicoMensalista" value="@Model.IdServicoMensalista" />
+        <input type="hidden" id="Persisted" name="Persisted" value="@Model.Persisted" />
+        
+
+        <table class="CadPro">
+
+            <tr>
+                <td width="130px">
+                    <span>Placa</span>
+                </td>
+                <td colspan="5">
+                    <input type="text" name="placa" id="placa" class="input-pdr" style="width: 173px;" value="@Model.Placa" readonly="readonly" />
+                </td>
+            </tr>
+            <tr>
+                <td>Carro</td>
+                <td>
+                    <input type="text" id="carro" name="carro" class="input-pdr" style="width: 173px" value="@Model.Carro" readonly="readonly" />
+                </td>
+                <td>Nome Cliente</td>
+                <td>
+                    <input type="text" id="nomeCliente" name="nomeCliente" class="input-pdr" style="width: 220px" value="@Model.Nome" readonly="readonly" />
+                </td>
+
+
+            </tr>
+
+            <tr>
+                <td>Data Hora Entrada</td>
+                <td colspan="1">
+                    <input name="dataEntrada" id="dataEntrada" type="text" class="input-pdr" style="width: 110px" />
+                    <input class="input-pdr" id="horaEntrada" maxlength="5" name="horaEntrada" style="width:60px" type="text">
+                </td>
+                <td>Data Hora Saída</td>
+                <td>
+                    <input name="dataSaida" id="dataSaida" type="text" class="input-pdr" style="width: 110px"/>
+                    <input class="input-pdr" id="horaSaida" maxlength="5" name="horaSaida" style="width:60px" type="text">
+                </td>
+
+
+            </tr>
+
+
+            <tr>
+                <td>Serviço 1:</td>
+                <td style="position: relative;">
+                    <select name="servico1" id="servico1" style="width: 170px">
+                        <option>-</option>
+                        <option name="servico1" value="Estacionamento">Estacionamento</option>
+                        <option name="servico1" value="Lavagem">Lavagem</option>
+                        <option name="servico1" value="Outros">Outros</option>
+                    </select>
+                </td>
+                <td>Obs</td>
+                <td>
+                    <textarea type="text" id="obs1" name="obs1" value="@Model.Observacao1" class="input-pdr" style="width: 220px" cols="10" rows="2"></textarea>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>Serviço 2:</td>
+                <td style="position: relative;">
+                    <select name="servico2" id="servico" style="width: 170px">
+                        <option>-</option>
+                        <option name="servico2" value="Estacionamento">Estacionamento</option>
+                        <option name="servico2" value="Lavagem">Lavagem</option>
+                        <option name="servico2" value="Outros">Outros</option>
+                    </select>
+                </td>
+                <td>Obs</td>
+                <td>
+                    <textarea type="text" id="obs2" name="obs2" value="@Model.Observacao2" class="input-pdr" style="width: 220px" cols="10" rows="2"></textarea>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>Serviço 3:</td>
+                <td style="position: relative;">
+                    <select name="servico3" id="servico3" style="width: 170px">
+                        <option>-</option>
+                        <option name="servico3" value="Estacionamento">Estacionamento</option>
+                        <option name="servico3" value="Lavagem">Lavagem</option>
+                        <option name="servico3" value="Outros">Outros</option>
+                    </select>
+                </td>
+                <td>Obs</td>
+                <td>
+                    <textarea type="text" id="obs3" name="obs3" value="@Model.Observacao3" class="input-pdr" style="width: 220px" cols="10" rows="2"></textarea>
+                </td>
+
+            </tr>
+
+
+
+            <tr>
+                <td>Valor Serviço</td>
+                <td>
+                    <input type="text" id="valorServico" value="@Model.ValorServico" name="valorServico" class="input-pdr moeda" style="width: 173px" required="required" />
+                </td>
+                <td>Valor Hora</td>
+                <td>
+                    <input type="text" id="valorHora" name="valorHora" value="@Model.ValorHora" class="input-pdr moeda" style="width: 220px" />
+                </td>
+
+
+            </tr>
+
+            <tr>
+                <td>Total de Horas</td>
+                <td>
+                    <input type="text" id="totalHoras" name="totalHoras" value="@Model.TotalHoras" class="input-pdr" style="width: 173px" required="required" />
+                </td>
+                <td>Valor Total</td>
+                <td>
+                    <input type="text" id="valorTotal" name="valorTotal" value="@Model.ValorTotal" class="input-pdr moeda" style="width: 220px" />
+                </td>
+
+
+            </tr>
+
+
+            <tr>
+                <td>Forma de Pagamento</td>
+                <td>
+                    <input type="text" id="formaPagamento" name="formaPagamento" value="@Model.FormaPagamento" class="input-pdr" style="width: 173px" required="required" />
+                </td>
+                <td>Fechado:</td>
+                <td width="166px">
+                    @Html.EditorFor(model => model.Fechado)
+                    @Html.ValidationMessageFor(model => model.Fechado, "", new { @class = "text-danger" })
+                </td>
+
+
+            </tr>
+
+            <tr>
+                <td colspan="6">
+                    <input type="submit" value="Salvar" id="btnSalvar" class="btn btnGreen" style="width: 85px; height: 34px; margin-left: 130px;" />
+                    <a href='@Url.Action("/", "ServicoMensalista")'>
+                        <input type="button" class="btn btnWhite dropdown-toggle" value="Cancelar" style="width: 85px; height: 34px;" />
+                    </a>
+                </td>
+            </tr>
+
+
+        </table>
+    }
+
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#datetimepicker1").datetimepicker({
+            locale: moment.locale('pt-BR'),
+            format: 'DD/MM/YYYY'
+        });
+    });
+</script>
+<script>
+    
+</script>
+
+<script>
+    $(function ($) {
+        $("#placa").mask("aaa-9999");
+    });
+</script>
+
+<script>
+    jQuery(function ($) {
+        $("#dataEntrada").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+        $("#dataSaida").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+        $("#totalHoras").mask("99:99");
+        $("#horaSaida").mask("99:99");
+        $("#horaEntrada").mask("99:99");
+    });
+</script>
+

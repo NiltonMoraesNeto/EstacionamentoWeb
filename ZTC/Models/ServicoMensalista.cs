@@ -26,7 +26,7 @@ namespace ZTC.Model
         private DateTime? _dataHoraSaida;
         private decimal _valorServico;
         private decimal _valorHora;
-        private decimal _totalHoras;
+        private string _totalHoras;
         private decimal _valorTotal;
         private string _formaPagamento;
         private bool _fechado;
@@ -107,7 +107,7 @@ namespace ZTC.Model
             get { return _valorHora; }
             set { _valorHora = value; }
         }
-        public decimal TotalHoras
+        public string TotalHoras
         {
             get { return _totalHoras; }
             set { _totalHoras = value; }
