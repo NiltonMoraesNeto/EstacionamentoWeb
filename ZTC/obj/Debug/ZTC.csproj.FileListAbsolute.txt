@@ -257,3 +257,6 @@ C:\Users\nilton.moraes\Documents\Codigos\ZTC\ZTC\bin\pt-br\System.Web.Razor.reso
 C:\Users\nilton.moraes\Documents\Codigos\ZTC\ZTC\bin\pt-br\System.Web.WebPages.resources.dll
 C:\Users\nilton.moraes\Documents\Codigos\ZTC\ZTC\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
 C:\Users\nilton.moraes\Documents\Codigos\ZTC\ZTC\bin\pt-br\System.Web.WebPages.Razor.resources.dll
+C:\Users\nilton.moraes\Documents\Codigos\ZTC\ZTC\bin\DocX.dll
+C:\Users\nilton.moraes\Documents\Codigos\ZTC\ZTC\bin\itextsharp.dll
+C:\Users\nilton.moraes\Documents\Codigos\ZTC\ZTC\bin\itextsharp.xml

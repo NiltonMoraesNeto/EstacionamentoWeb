@@ -9,6 +9,8 @@ using ZTC.Model;
 using ZTC.Models;
 using ZTC.Models.ENUMS;
 using System.Net.Mail;
+using System.IO;
+
 namespace ZTC.Controllers
 {
     public class ServicoMensalistaController : BaseController
@@ -53,14 +55,18 @@ namespace ZTC.Controllers
                 servicoMensalista.Placa = collection["placa"];
                 servicoMensalista.Carro = collection["carro"];
                 servicoMensalista.Nome = collection["nomeCliente"];
-                servicoMensalista.DataHoraEntrada = collection["dataEntrada"] != "" ? DateTime.Parse(collection["dataEntrada"]) + collection["horaEntrada"] != "" ? DateTime.Parse(collection["horaEntrada"]) : (DateTime?)null : (DateTime?)null;
-                servicoMensalista.DataHoraSaida = collection["dataSaida"] != "" ? DateTime.Parse(collection["dataSaida"]) + collection["horaSaida"] != "" ? DateTime.Parse(collection["horaSaida"]) : (DateTime?)null : (DateTime?)null;
+                //servicoMensalista.DataHoraEntrada = collection["dataLimiteRetorno"] != "" ? DateTime.Parse(collection["dataLimiteRetorno"]) : (DateTime?)null;
+                servicoMensalista.DataHoraEntrada = collection["dataEntrada"] != "" ? DateTime.Parse(collection["dataEntrada"] + " " + collection["horaEntrada"]) : (DateTime?)null;
+                //servicoMensalista.DataHoraEntrada = collection["dataEntrada"] != "" ? DateTime.Parse(collection["dataEntrada"]) + collection["horaEntrada"] != "" ? DateTime.Parse(collection["horaEntrada"]) : (DateTime?)null : (DateTime?)null;
+                //servicoMensalista.DataHoraSaida = collection["dataSaida"] != "" ? DateTime.Parse(collection["dataSaida"]) + collection["horaSaida"] != "" ? DateTime.Parse(collection["horaSaida"]) : (DateTime?)null : (DateTime?)null;
+                servicoMensalista.DataHoraSaida = collection["dataSaida"] != "" ? DateTime.Parse(collection["dataSaida"] + " " + collection["horaSaida"]) : (DateTime?)null;
                 servicoMensalista.Servico1 = collection["servico1"];
                 servicoMensalista.Servico2 = collection["servico2"];
                 servicoMensalista.Servico3 = collection["servico3"];
                 servicoMensalista.Observacao1 = collection["obs1"];
                 servicoMensalista.Observacao2 = collection["obs2"];
                 servicoMensalista.Observacao3 = collection["obs3"];
+
                 servicoMensalista.ValorServico = Convert.ToDecimal(collection["valorServico"]);
                 servicoMensalista.ValorHora = Convert.ToDecimal(collection["valorHora"]);
                 servicoMensalista.TotalHoras = collection["totalHoras"];
@@ -69,6 +75,7 @@ namespace ZTC.Controllers
 
                 bll.Save(servicoMensalista);
 
+                GetFileEntrada(servicoMensalista.IdServicoMensalista, servicoMensalista);
 
                 Success("Sucesso", "Salvo com sucesso!", true);
                 return RedirectToAction("Index");
@@ -87,9 +94,7 @@ namespace ZTC.Controllers
             var bll = new ServicoMensalistaBll();
             var servicoMensalista = bll.GetObject(id);
 
-
-
-
+            
             if (servicoMensalista == null)
             {
                 return HttpNotFound();
@@ -101,17 +106,42 @@ namespace ZTC.Controllers
         // POST: Entrada/Edit/5
         [AccessDeniedAuthorize]
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ServicoMensalista servicoMensalista, FormCollection collection)
         {
+
             try
             {
-                // TODO: Add update logic here
+                var bll = new ServicoMensalistaBll();
 
-                return RedirectToAction("Index");
+                servicoMensalista.Placa = collection["placa"];
+                servicoMensalista.Carro = collection["carro"];
+                servicoMensalista.Nome = collection["nome"];
+                servicoMensalista.DataHoraEntrada = collection["dataHoraEntrada"] != "" ? DateTime.Parse(collection["dataHoraEntrada"] + " " + collection["horaEntrada"]) : (DateTime?)null;
+                servicoMensalista.DataHoraSaida = collection["dataSaida"] != "" ? DateTime.Parse(collection["dataSaida"] + " " + collection["horaSaida"]) : (DateTime?)null;
+                servicoMensalista.Servico1 = collection["servico1"];
+                servicoMensalista.Servico2 = collection["servico2"];
+                servicoMensalista.Servico3 = collection["servico3"];
+                servicoMensalista.Observacao1 = collection["obs1"];
+                servicoMensalista.Observacao2 = collection["obs2"];
+                servicoMensalista.Observacao3 = collection["obs3"];
+
+                servicoMensalista.ValorServico = Convert.ToDecimal(collection["valorServico"]);
+                servicoMensalista.ValorHora = Convert.ToDecimal(collection["valorHora"]);
+                servicoMensalista.TotalHoras = collection["totalHoras"];
+                servicoMensalista.ValorTotal = Convert.ToDecimal(collection["valorTotal"]);
+                servicoMensalista.FormaPagamento = collection["formaPagamento"];
+
+                bll.Save(servicoMensalista);
+
+                GetFileSaida(servicoMensalista.IdServicoMensalista, servicoMensalista);
+
+                Success("Sucesso", "Salvo com sucesso!", true);
+                return RedirectToAction("/");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                Danger("Erro", string.Format(ex.Message), true);
+                return View(servicoMensalista);
             }
         }
 
@@ -137,6 +167,103 @@ namespace ZTC.Controllers
             {
                 return View();
             }
+        }
+
+
+        public FileStreamResult GetFileEntrada(int id, ServicoMensalista servicoMensalista)
+        {
+
+
+            string name = @"D:\Teste\" + id + "_ENTRADA" + ".txt";
+
+            FileInfo info = new FileInfo(name);
+            if (!info.Exists)
+            {
+                using (StreamWriter writer = info.CreateText())
+                {
+                    writer.WriteLine("");
+                    writer.WriteLine("ZTC PARKING");
+                    writer.WriteLine("RUA DR.BEZERRA DE MENEZES, 113 - AHU");
+                    writer.WriteLine("");
+                    writer.WriteLine("ENTRADA - MENSALISTA");
+                    writer.WriteLine("TICKET: " + id);
+                    writer.WriteLine("DATA HORA ENTRADA: " + servicoMensalista.DataHoraEntrada);
+                    writer.WriteLine("PLACA: " + servicoMensalista.Placa);
+                    writer.WriteLine("CARRO: " + servicoMensalista.Carro);
+                    writer.WriteLine("NOME: " + servicoMensalista.Nome);
+
+                }
+            }
+
+            else
+            {
+                using (StreamWriter writer = info.CreateText())
+                {
+                    writer.WriteLine("");
+                    writer.WriteLine("ZTC PARKING");
+                    writer.WriteLine("RUA DR.BEZERRA DE MENEZES, 113 - AHU");
+                    writer.WriteLine("");
+                    writer.WriteLine("ENTRADA - MENSALISTA");
+                    writer.WriteLine("TICKET: " + id);
+                    writer.WriteLine("DATA HORA ENTRADA: " + servicoMensalista.DataHoraEntrada);
+                    writer.WriteLine("PLACA: " + servicoMensalista.Placa);
+                    writer.WriteLine("CARRO: " + servicoMensalista.Carro);
+                    writer.WriteLine("NOME: " + servicoMensalista.Nome);
+
+                }
+            }
+
+            return File(info.OpenRead(), "text/plain");
+
+        }
+
+        public FileStreamResult GetFileSaida(int id, ServicoMensalista servicoMensalista)
+        {
+
+
+            string name = @"D:\Teste\" + id + "_SAIDA" + ".txt";
+
+            FileInfo info = new FileInfo(name);
+            if (!info.Exists)
+            {
+                using (StreamWriter writer = info.CreateText())
+                {
+                    writer.WriteLine("");
+                    writer.WriteLine("ZTC PARKING");
+                    writer.WriteLine("RUA DR.BEZERRA DE MENEZES, 113 - AHU");
+                    writer.WriteLine("");
+                    writer.WriteLine("SAÍDA - MENSALISTA");
+                    writer.WriteLine("TICKET: " + id);
+                    writer.WriteLine("DATA HORA ENTRADA: " + servicoMensalista.DataHoraEntrada);
+                    writer.WriteLine("DATA HORA SAÍDA: " + servicoMensalista.DataHoraSaida);
+                    writer.WriteLine("PLACA: " + servicoMensalista.Placa);
+                    writer.WriteLine("CARRO: " + servicoMensalista.Carro);
+                    writer.WriteLine("NOME: " + servicoMensalista.Nome);
+
+                }
+            }
+
+            else
+            {
+                using(StreamWriter writer = info.CreateText())
+                {
+                    writer.WriteLine("");
+                    writer.WriteLine("ZTC PARKING");
+                    writer.WriteLine("RUA DR.BEZERRA DE MENEZES, 113 - AHU");
+                    writer.WriteLine("");
+                    writer.WriteLine("SAÍDA - MENSALISTA");
+                    writer.WriteLine("TICKET: " + id);
+                    writer.WriteLine("DATA HORA ENTRADA: " + servicoMensalista.DataHoraEntrada);
+                    writer.WriteLine("DATA HORA SAÍDA: " + servicoMensalista.DataHoraSaida);
+                    writer.WriteLine("PLACA: " + servicoMensalista.Placa);
+                    writer.WriteLine("CARRO: " + servicoMensalista.Carro);
+                    writer.WriteLine("NOME: " + servicoMensalista.Nome);
+
+                }
+            }
+
+            return File(info.OpenRead(), "text/plain");
+
         }
     }
 }

@@ -94,8 +94,8 @@ namespace ZTC.Model
         }
         public DateTime? DataHoraSaida
         {
-            get { return _dataHoraEntrada; }
-            set { _dataHoraEntrada = value; }
+            get { return _dataHoraSaida; }
+            set { _dataHoraSaida = value; }
         }
         public decimal ValorServico
         {

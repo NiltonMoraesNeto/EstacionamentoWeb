@@ -29,10 +29,10 @@
         @Html.AntiForgeryToken()
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        //@Html.HiddenFor(model => model.IdServicoMensalista)
-        //@Html.HiddenFor(model => model.Persisted)
-        <input type="hidden" id="IdServicoMensalista" name="IdServicoMensalista" value="@Model.IdServicoMensalista" />
-        <input type="hidden" id="Persisted" name="Persisted" value="@Model.Persisted" />
+        @Html.HiddenFor(model => model.IdServicoMensalista)
+        @Html.HiddenFor(model => model.Persisted)
+        @*<input type="hidden" id="IdServicoMensalista" name="IdServicoMensalista" value="@Model.IdServicoMensalista" />
+        <input type="hidden" id="Persisted" name="Persisted" value="@Model.Persisted" />*@
         
 
         <table class="CadPro">
@@ -52,7 +52,7 @@
                 </td>
                 <td>Nome Cliente</td>
                 <td>
-                    <input type="text" id="nomeCliente" name="nomeCliente" class="input-pdr" style="width: 220px" value="@Model.Nome" readonly="readonly" />
+                    <input type="text" id="nome" name="nome" class="input-pdr" style="width: 220px" value="@Model.Nome" readonly="readonly" />
                 </td>
 
 
@@ -61,13 +61,13 @@
             <tr>
                 <td>Data Hora Entrada</td>
                 <td colspan="1">
-                    <input name="dataEntrada" id="dataEntrada" type="text" class="input-pdr" style="width: 110px" />
-                    <input class="input-pdr" id="horaEntrada" maxlength="5" name="horaEntrada" style="width:60px" type="text">
+                    <input name="dataHoraEntrada" id="dataHoraEntrada" type="text" class="input-pdr datetimepicker" style="width: 110px" value="@Model.DataHoraEntrada"/>
+                    <input class="input-pdr" id="horaEntrada" maxlength="5" name="horaEntrada" style="width:60px" type="text" value="@Model.DataHoraEntrada.ToString().Substring(11,5)">
                 </td>
                 <td>Data Hora Saída</td>
                 <td>
-                    <input name="dataSaida" id="dataSaida" type="text" class="input-pdr" style="width: 110px"/>
-                    <input class="input-pdr" id="horaSaida" maxlength="5" name="horaSaida" style="width:60px" type="text">
+                    <input name="dataSaida" id="dataSaida" type="text" class="input-pdr datetimepicker" style="width: 110px"value="@Model.DataHoraSaida"/>
+                    <input class="input-pdr" id="horaSaida" maxlength="5" name="horaSaida" style="width:60px" type="text" value="@Model.DataHoraSaida.ToString().Substring(11,5)">
                 </td>
 
 
@@ -78,7 +78,7 @@
                 <td>Serviço 1:</td>
                 <td style="position: relative;">
                     <select name="servico1" id="servico1" style="width: 170px">
-                        <option>-</option>
+                        <option name="servico1" value="@Model.Servico1">@Model.Servico1</option>
                         <option name="servico1" value="Estacionamento">Estacionamento</option>
                         <option name="servico1" value="Lavagem">Lavagem</option>
                         <option name="servico1" value="Outros">Outros</option>
@@ -86,7 +86,7 @@
                 </td>
                 <td>Obs</td>
                 <td>
-                    <textarea type="text" id="obs1" name="obs1" value="@Model.Observacao1" class="input-pdr" style="width: 220px" cols="10" rows="2"></textarea>
+                    <textarea type="text" id="obs1" name="obs1" class="input-pdr" style="width: 220px" cols="10" rows="2">@Html.Raw(Model.Observacao1 != null ? Model.Observacao1 : "")</textarea>
                 </td>
 
             </tr>
@@ -95,7 +95,7 @@
                 <td>Serviço 2:</td>
                 <td style="position: relative;">
                     <select name="servico2" id="servico" style="width: 170px">
-                        <option>-</option>
+                        <option name="servico2" value="@Model.Servico2">@Model.Servico2</option>
                         <option name="servico2" value="Estacionamento">Estacionamento</option>
                         <option name="servico2" value="Lavagem">Lavagem</option>
                         <option name="servico2" value="Outros">Outros</option>
@@ -103,7 +103,7 @@
                 </td>
                 <td>Obs</td>
                 <td>
-                    <textarea type="text" id="obs2" name="obs2" value="@Model.Observacao2" class="input-pdr" style="width: 220px" cols="10" rows="2"></textarea>
+                    <textarea type="text" id="obs2" name="obs2" class="input-pdr" style="width: 220px" cols="10" rows="2">@Html.Raw(Model.Observacao2 != null ? Model.Observacao2 : "")</textarea>
                 </td>
 
             </tr>
@@ -112,7 +112,7 @@
                 <td>Serviço 3:</td>
                 <td style="position: relative;">
                     <select name="servico3" id="servico3" style="width: 170px">
-                        <option>-</option>
+                        <option name="servico3" value="@Model.Servico3">@Model.Servico3</option>
                         <option name="servico3" value="Estacionamento">Estacionamento</option>
                         <option name="servico3" value="Lavagem">Lavagem</option>
                         <option name="servico3" value="Outros">Outros</option>
@@ -120,7 +120,7 @@
                 </td>
                 <td>Obs</td>
                 <td>
-                    <textarea type="text" id="obs3" name="obs3" value="@Model.Observacao3" class="input-pdr" style="width: 220px" cols="10" rows="2"></textarea>
+                    <textarea type="text" id="obs3" name="obs3" class="input-pdr" style="width: 220px" cols="10" rows="2">@Html.Raw(Model.Observacao3 != null ? Model.Observacao3 : "")</textarea>
                 </td>
 
             </tr>
@@ -130,11 +130,11 @@
             <tr>
                 <td>Valor Serviço</td>
                 <td>
-                    <input type="text" id="valorServico" value="@Model.ValorServico" name="valorServico" class="input-pdr moeda" style="width: 173px" required="required" />
+                    <input type="text" id="valorServico" onkeyup="somar1();" value="@Model.ValorServico" name="valorServico" class="input-pdr moeda" style="width: 173px" required="required" />
                 </td>
                 <td>Valor Hora</td>
                 <td>
-                    <input type="text" id="valorHora" name="valorHora" value="@Model.ValorHora" class="input-pdr moeda" style="width: 220px" />
+                    <input type="text" id="valorHora" onkeyup="somar1();" name="valorHora" value="@Model.ValorHora" class="input-pdr moeda" style="width: 220px" />
                 </td>
 
 
@@ -147,7 +147,7 @@
                 </td>
                 <td>Valor Total</td>
                 <td>
-                    <input type="text" id="valorTotal" name="valorTotal" value="@Model.ValorTotal" class="input-pdr moeda" style="width: 220px" />
+                    <input type="text" id="valorTotal" name="valorTotal" onkeyup="somar1();" value="@Model.ValorTotal" class="input-pdr moeda" style="width: 220px" />
                 </td>
 
 
@@ -191,9 +191,73 @@
         });
     });
 </script>
-<script>
+
+
+<script type="text/javascript">
+
+    
+
+    addEvent = function (o, e, f, s) {
+        var r = o[r = "_" + (e = "on" + e)] = o[r] || (o[e] ? [[o[e], o]] : []), a, c, d;
+        r[r.length] = [f, s || o], o[e] = function (e) {
+            try {
+                (e = e || event).preventDefault || (e.preventDefault = function () { e.returnValue = false; });
+                e.stopPropagation || (e.stopPropagation = function () { e.cancelBubble = true; });
+                e.target || (e.target = e.srcElement || null);
+                e.key = (e.which + 1 || e.keyCode + 1) - 1 || 0;
+            } catch (f) {
+            }
+            for (d = 1, f = r.length; f; r[--f] && (a = r[f][0], o = r[f][1], a.call ? c = a.call(o, e) : (o._ = a, c = o._(e), o._ = null), d &= c !== false));
+            return e = null, !!d;
+        }
+    };
+
+    function formatCurrency(o, n, dig, dec) {
+        o.c = !isNaN(n) ? Math.abs(n) : 2;
+        o.dec = typeof dec != "string" ? "," : dec, o.dig = typeof dig != "string" ? "." : dig;
+        addEvent(o, "keypress", function (e) {
+            if (e.key > 47 && e.key < 58) {
+                var o, s, l = (s = ((o = this).value.replace(/^0+/g, "") + String.fromCharCode(e.key)).replace(/\D/g, "")).length, n;
+                if (o.maxLength + 1 && l >= o.maxLength) return false;
+                l <= (n = o.c) && (s = new Array(n - l + 2).join("0") + s);
+                for (var i = (l = (s = s.split("")).length) - n; (i -= 3) > 0; s[i - 1] += o.dig);
+                n && n < l && (s[l - ++n] += o.dec);
+                o.value = s.join("");
+            }
+            e.key > 30 && e.preventDefault();
+        });
+    }
+
+    function fmtMoney(n, c, d, t) {
+        var m = (c = Math.abs(c) + 1 ? c : 2, d = d || ",", t = t || ".",
+            /(\d+)(?:(\.\d+)|)/.exec(n + "")),
+            x = m[1].length > 3 ? m[1].length % 3 : 0;
+        return (x ? m[1].substr(0, x) + t : "") + m[1].substr(x).replace(/(\d{3})(?=\d)/g,
+            "$1" + t) + (c ? d + (+m[2] || 0).toFixed(c).substr(2) : "");
+    };
+
+    function somar1() {
+        var f = document.forms[0];
+        var valor1 = parseFloat(f.valorServico.value.replace('.', '').replace(',', '.'));
+        var valor2 = parseFloat(f.valorHora.value.replace('.', '').replace(',', '.'));
+        var valor3 = (totalHoras);
+        var valor4 = ('' + ((valor1 || 0) + (valor2 || 0)));
+        var valor5 = ((valor3) * (valor4 || 0));
+        f.valorTotal.value = fmtMoney(valor4);
+
+        console.log(valor4);
+    }
+
+    function init() {
+        formatCurrency(document.forms[0].campo1, 2, ".", ",");
+
+    }
+
+    window.onload = init;
+
     
 </script>
+
 
 <script>
     $(function ($) {
@@ -203,8 +267,8 @@
 
 <script>
     jQuery(function ($) {
-        $("#dataEntrada").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
-        $("#dataSaida").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+        //$("#dataEntrada").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
+        //$("#dataSaida").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
         $("#totalHoras").mask("99:99");
         $("#horaSaida").mask("99:99");
         $("#horaEntrada").mask("99:99");
