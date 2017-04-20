@@ -649,6 +649,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jquery.wordexport.js" />
+    <Content Include="Scripts\jquery.worked-hours-grid.js" />
+    <Content Include="Scripts\jquery.worked-hours-grid.min.js" />
     <Content Include="Scripts\lang\en-au.js" />
     <Content Include="Scripts\lang\en-ca.js" />
     <Content Include="Scripts\lang\en-gb.js" />

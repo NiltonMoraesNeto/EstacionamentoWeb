@@ -4,7 +4,6 @@
     ViewBag.Title = "Criar Novo Mensalista";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <style>
     #tableUsuario tr td {
         padding: 5px 5px 5px 5px;
@@ -20,14 +19,15 @@
 </style>
 
 
-
+<script src="~/Scripts/jquery.worked-hours-grid.js"></script>
+<script src="~/Scripts/jquery.worked-hours-grid.min.js"></script>
 <h2>Criar Novo Serviço Mensalista</h2>
 <div class="content">
 
     <form action="@Url.Action("Create", "ServicoMensalista")" method="POST" name="form1">
         <input type="hidden" name="idMensalista" id="idMensalista" />
 
-        <table class="CadPro">
+        <table class="CadPro ts-grid">
 
             <tr>
                 <td width="130px">
@@ -53,20 +53,36 @@
             </tr>
 
             <tr>
-                <td>Data Hora Entrada</td>
+                <td>Data Entrada</td>
                 <td colspan="1">
                     <input name="dataEntrada" id="dataEntrada" type="text" class="input-pdr datetimepicker" style="width: 110px" value="@DateTime.Now"/>
                     @*<input class="input-pdr timepicker_bottom text-box single-line" id="horaEntrada" maxlength="5" name="horaEntrada" style="width:60px" type="text">*@
-                    <input class="input-pdr timepicker_bottom text-box single-line" id="horaEntrada" maxlength="5" name="horaEntrada" style="width:60px" type="text" value="@DateTime.Now.ToShortTimeString()">
+                    @*<input class="input-pdr timepicker_bottom text-box single-line" id="horaEntrada" maxlength="5" name="horaEntrada" style="width:60px" type="text" value="@DateTime.Now.ToShortTimeString()">*@
                 </td>
-                <td>Data Hora Saída</td>
+                <td>Data Saída</td>
                 <td>
                     <input name="dataSaida" id="dataSaida" type="text" class="input-pdr datetimepicker" style="width: 110px" value="@DateTime.Now" />
                     @*<input class="input-pdr timepicker_bottom text-box single-line" id="horaSaida" maxlength="5" name="horaSaida" style="width:60px" type="text">*@
-                    <input class="input-pdr timepicker_bottom text-box single-line" id="horaSaida" maxlength="5" name="horaSaida" style="width:60px" type="text" value="@DateTime.Now.ToShortTimeString()">
+                    @*<input class="input-pdr timepicker_bottom text-box single-line" id="horaSaida" maxlength="5" name="horaSaida" style="width:60px" type="text" value="@DateTime.Now.ToShortTimeString()">*@
                 </td>
 
 
+            </tr>
+
+            <tr class="ts-row">
+                <td>Hora Entrada / Saída</td>
+                @*<td class="ts-range">
+                <input class="ts-time ts-start" type="time" value="10:00" /> to
+                <input class="ts-time ts-end" type="time" value="12:00" />
+            </td>*@
+
+                <td class="ts-range">
+                    <input class="ts-time ts-start" type="time" value="" id="horaEntrada" name="horaEntrada" /> -
+                    <input class="ts-time ts-end" type="time" value="" id="horaSaida" name="horaSaida"/>
+                </td>
+                <td class="ts-sum" id="totalHoras" name="totalHoras" data-nome="totalHoras">
+                    <input type="text" class="ts-time ts-sum" id="totalHoras" name="totalHoras" style="width: 173px" />
+                </td>
             </tr>
 
 
@@ -137,10 +153,10 @@
             </tr>
 
             <tr>
-                <td>Total de Horas</td>
-                <td>
-                    <input type="text" id="totalHoras" name="totalHoras" class="input-pdr" style="width: 173px" />
-                </td>
+                @*<td>Total de Horas</td>
+    <td>
+        <input type="text" id="totalHoras" name="totalHoras" class="input-pdr" style="width: 173px" />
+    </td>*@
                 <td>Valor Total</td>
                 <td>
                     <input type="text" id="valorTotal" name="valorTotal" class="input-pdr moeda" style="width: 220px" value="0,01"/>
@@ -148,6 +164,8 @@
 
 
             </tr>
+            
+
 
 
             <tr>
@@ -163,6 +181,8 @@
 
 
             </tr>
+
+   
 
             <tr>
                 <td colspan="6">
@@ -195,17 +215,6 @@
 
     </div>
 </div>
-@*<script type="text/javascript">
-    $(function () {
-        $("#datetimepicker1").datetimepicker({
-            locale: moment.locale('pt-BR'),
-            format: 'DD/MM/YYYY'
-        });
-    });
-</script>*@
-<script>
-    
-</script>
 
 <script>
     $(function ($) {
@@ -213,22 +222,21 @@
     });
 </script>
 
-<script>
-    jQuery(function ($) {
-        //$("#dataEntrada").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
-        //$("#dataSaida").mask("99/99/9999", { placeholder: "mm/dd/yyyy" });
-        $("#totalHoras").mask("99:99");
-        //$("#horaSaida").mask("99:99");
-        //$("#horaEntrada").mask("99:99");
+<script type='text/javascript'>
+	"use strict";
+	$(function() {
+      $(".ts-grid").workedHoursGrid({
+        selectors: {
+            	row: ".ts-row",
+            	range: ".ts-range",
+            	start: ".ts-start",
+            	end: ".ts-end",
+            	sum: ".ts-sum",
+            	total: ".ts-total"
+			}
+      });
     });
 </script>
-
-<script>
-
-
-
-</script>
-
 
 <script>
     $("#btnBuscarPorNomeEmpresa").click(function () {
